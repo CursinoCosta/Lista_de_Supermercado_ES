@@ -1,8 +1,8 @@
 # Membros da Equipe
-Cecília Junqueira V. M. Pereira
-Henrique Matos
-Lucas Junqueira
-Mateus Cursino
+Cecília Junqueira V. M. Pereira <br />
+Henrique Matos <br />
+Lucas Junqueira <br />
+Mateus Cursino <br />
 
 # Backlog do Produto
 1. Usuário deve ser capaz de registrar a sua lista de supermercado (quais alimentos quer comprar e a quantidade).
