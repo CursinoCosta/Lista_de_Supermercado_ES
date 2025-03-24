@@ -8,6 +8,9 @@ Mateus Cursino <br />
 1. Usuário deve ser capaz de registrar a sua lista de supermercado (quais alimentos quer comprar e a quantidade).
 2. Usuário deve ser capaz de registrar receitas que ele deseja fazer e, ao anotá-la, registra os ingredientes necessários (e as quantidades), que são salvos na sua lista de mercado.
 3. Ao montar sua lista de mercado, o sistema deve dar uma estimativa de preço da compra (leva em base o preço médio de cada produto no momento).
+4. O usuário deve ser capaz de avaliar receitas.
+5. O usuário deve ser capaz de ver as receitas mais bem avaliadas.
+6. O usuário deve ser capaz de salvar suas receitas favoritas.
 
 
 # Backlog do Sprint
@@ -27,6 +30,13 @@ Mateus Cursino <br />
   * Implementar a funcionalidade de que o preço da compra total deve mudar automaticamente, de acordo com os itens inseridos e removidos da lista.
 
 ## História #4:
-  * O usuário deve ser capaz de avaliar receitas.
-  * O usuário deve ser capaz de ver as receitas mais bem avaliadas.
-  * O usuário deve ser capaz de salvar suas receitas favoritas.
+  * Implementar sistemas de notas para receitas públicas.
+  * Implementar sistema para que o usuário possa avaliar uma receita pública
+
+## História #5:
+  * Implementar sistema para que um usuário possa visualizar receitas públicas em uma página.
+  * Implementar sistema para que receitas públicas possam ser apresentadas ao usuário ordenadas pelas notas de avaliação.
+
+## História #5:
+  * Implementar banco de dados para que um usuário salve receitas favoritas.
+  * Implementar página para que um usuário visualize suas receitas salvas
