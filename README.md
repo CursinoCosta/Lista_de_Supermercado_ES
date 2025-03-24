@@ -25,3 +25,8 @@ Mateus Cursino <br />
 ## História #3:
   * Implementar a funcionalidade de identificar os alimentos registrados na lista de mercado (e as quantidades de cada um) e, então, calcular a média de preço da compra.
   * Implementar a funcionalidade de que o preço da compra total deve mudar automaticamente, de acordo com os itens inseridos e removidos da lista.
+
+## História #4:
+  * O usuário deve ser capaz de avaliar receitas.
+  * O usuário deve ser capaz de ver as receitas mais bem avaliadas.
+  * O usuário deve ser capaz de salvar suas receitas favoritas.
