@@ -1,5 +1,5 @@
-# Membros da Equipe
-Cecília Junqueira V. M. Pereira <br />
+# Membros da Equipe e seus respectivos papéis
+Cecília Junqueira V. M. Pereira --> FULL <br />
 Henrique Matos <br />
 Lucas Junqueira <br />
 Mateus Cursino <br />
