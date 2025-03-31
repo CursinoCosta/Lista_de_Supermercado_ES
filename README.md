@@ -1,8 +1,16 @@
+# CheckList
+- O sistema proposto consiste em um software cuja principal função é registrar a lista de mercado do usuário, bem como receitas que ele deseja salvar. 
+Dessa forma, temos como objetivo desenvolver uma plataforma de uso simples e rápido, onde os usuários consigam achar a lista de mercado de maneira fácil durante a correria do dia a dia, sem ter que se preocupar em não perder o pedaço de papel com a lista. As principais features que buscam implementar são: uma aba onde o usuário pode visualizar os itens inseridos na lista de compras (além disso, também deve ser capaz de deletá-los quando convém), além de poder inserir mais itens; deve haver outra aba para registrar receitas, podendo, também, favoritá-las e filtrá-las de acordo com a categoria da receita. Dessa forma, ao implementar tais features, iremos desenvolver um sistema completo e útil para o dia a dia das pessoas.
+
 # Membros da Equipe e seus respectivos papéis
 Cecília Junqueira V. M. Pereira --> FULL <br />
-Henrique Matos <br />
-Lucas Junqueira <br />
-Mateus Cursino <br />
+Henrique Matos --> FULL <br />
+Lucas Junqueira --> FULL <br />
+Mateus Cursino --> FULL <br />
+
+# Detalhamento
+O FrontEnd do projeto será feito usando ReactJS em conjunto com CSS e HTML. <br />
+O BackEnd será feito em JavaScript e os bancos de dados serão trabalhados usando SQLite. <br />
 
 # Backlog do Produto
 1. Usuário deve ser capaz de registrar a sua lista de supermercado (quais alimentos quer comprar e a quantidade).
@@ -14,9 +22,8 @@ Mateus Cursino <br />
 7. Usuário deve ser capaz de adicionar valores nutricionais de alimentos 
 8. Usuário deve ser de publicar receitas, para outros usuários terem acesso
 9. O sistema deve contabilizar os valores nutricionais de uma receita a partir de seus ingredientes
-10. O usuário deve ser capaz de retirar e adicionar um item de sua lista de compras
-11. O usuário deve ser capaz de filtrar receitas por categoria
-12. O usuário deve ser capaz de criar itens recorrentes em sua lista de compras
+10. O usuário deve ser capaz de filtrar receitas por categoria
+11. O usuário deve ser capaz de criar itens recorrentes em sua lista de compras
 
 
 # Backlog do Sprint
@@ -31,25 +38,14 @@ Mateus Cursino <br />
   * Implementar a opção de deletar receitas.
   * Integrar os ingredientes inseridos na receita com a lista de mercado (adicionar os alimentos na lista).
 
-## História #3:
-  * Implementar a funcionalidade de identificar os alimentos registrados na lista de mercado (e as quantidades de cada um) e, então, calcular a média de preço da compra.
-  * Implementar a funcionalidade de que o preço da compra total deve mudar automaticamente, de acordo com os itens inseridos e removidos da lista.
 
-## História #4:
-  * Implementar sistemas de notas para receitas públicas.
-  * Implementar sistema para que o usuário possa avaliar uma receita pública
-
-## História #5:
-  * Implementar sistema para que um usuário possa visualizar receitas públicas em uma página.
-  * Implementar sistema para que receitas públicas possam ser apresentadas ao usuário ordenadas pelas notas de avaliação.
-
-## História #5:
-  * Implementar banco de dados para que um usuário salve receitas favoritas.
-  * Implementar página para que um usuário visualize suas receitas salvas
+##  História #6:
+* Implementar a funcionalidade onde o usuário deve ser capaz de sinalizar que uma receita registrada no sistema é classificada como favorita.
+* Deve implementar também a possibilidade de remover uma receita dos favoritos.
 
 ## História #11:
-  * O usuário deve ser capaz de filtrar receitas por categoria.
   * Implementar o atributo "categoria" para receitas no banco de dados.
-  * Adicionar campo de categoria ao cadastrar uma receita.
-  * Criar interface para escolher a categoria desejada e exibir as receitas filtradas na tela.
+  * Adicionar campo de categoria ao cadastrar uma receita (ex.: receita do tipo saudável, favorita, de festa, natal, etc).
+  * Criar interface para escolher a categoria desejada e exibir apenas as receitas filtradas na tela.
+  * Implementar a opção de criar categoria ao criar ou editar uma receita.
 
