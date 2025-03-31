@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de mercado</title>
+
+    <link rel="stylesheet" href="lista.css" type="text/css">
+
+    <script src="https://kit.fontawesome.com/a2f3e645e9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header id="main_header">
+
+        <img src="./images/logo.png" alt="LOGO">
+
+        <nav>
+            <ul class="navBar">
+                <li id="item_navbar"><a href="lista.html">Sua lista</a></li>
+                <li id="item_navbar"><a href="receitas.html">Suas receitas</a></li>
+                <li id="item_navbar"><a href="add_receita.html">Adicione receitas</a></li>
+                <li id="item_navbar"><a href="perfil.html">Perfil</a></li>
+                <li><button id="exit"><i id="icon" class="fa-solid fa-arrow-right-from-bracket fa-xl"></i></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr color="#dd724d" width="95%">
+
+    <h1>Sua lista de mercado</h1>
+
+    <div id="main">
+        <section id="add_item">
+    
+            <form>
+                <div class="envolves_input">
+                    <p>Item para comprar:</p>
+                    <input id="item" class="inputs_txt" type="text" placeholder="Digite...">
+                </div>
+        
+                <div class="envolves_input">
+                    <p>Quantidade:</p>
+                    <input id="quantity" class="inputs_txt" type="number" placeholder="Digite...">
+                    <select id="unit">
+                        <option id="select" value="select" selected disabled hidden>Selecione</option>
+                        <option value="unidade">unidade</option>
+                        <option value="pacote">pacote</option>
+                        <option value="grama">grama</option>
+                        <option value="quilograma">quilograma</option>
+                        <option value="mililitro">mililitro</option>
+                        <option value="litro">litro</option>
+                    </select>
+                </div>
+        
+                <div class="envolves_input">
+                    <p>Urgência da compra:</p>
+                    <div class="urgency">
+                        <input id="high" type="radio">
+                        <p>Alta</p>
+                    </div>
+                    <div class="urgency">
+                        <input id="medium" type="radio">
+                        <p>Moderada</p>
+                    </div>
+                    <div class="urgency">
+                        <input id="low" type="radio">
+                        <p>Baixa</p>
+                    </div>
+                </div>
+        
+                <button id="btn_add">Adicionar</button>
+            </form>
+        </section>
+    
+        <section id="sec_list">
+            <h3>No momento, você tem x itens na sua lista</h3>
+            
+            <div id="scroll">
+                <ul id="list">
+                    <div id="div_high">
+
+                    </div>
+                    <div id="div_medium">
+
+                    </div>
+                    <div id="div_low">
+                        
+                    </div>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="lista.js"></script>
+</body>
+</html>

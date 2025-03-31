@@ -1,0 +1,81 @@
+#body_login {
+    display: flex;
+    justify-content: space-between; /* Mantém uma div à esquerda e outra à direita */
+    align-items: center; /* Centraliza as divs verticalmente */
+    margin-top: 150px;
+    background-image: url("./images/fundo\ login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#main_div_cad {
+    width: 28%;
+    height: 100%;
+    border-style: solid;
+    border-color: rgb(215, 210, 210);
+    border-radius: 6px;
+    padding-left: 30px;
+    padding-right: 5px;
+    padding-bottom: 30px;
+    /* align-items: center; */
+    /* justify-content: center; */
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+#body_signup {
+    background-color: #ede5db;
+}
+
+#login_img {
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+#logo2 {
+    width: 300px;
+    justify-content: center;
+    margin-left: 45px;
+}
+
+h1 {
+    color: #dd724d;
+}
+
+#div_form {
+    width: 50%;
+    text-align: center; /* Centraliza o conteúdo dentro das divs */
+}
+
+/*#input_user_name, #input_password*/ input {
+    width: 360px;
+    height: 35px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border-width: thin;
+    padding-left: 15px;
+    border-color: rgb(215, 210, 210);
+    background-color: rgba(194,189,184,.15);
+}
+
+/*#btn_login*/ button {
+    width: 380px;
+    height: 35px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border-width: thin;
+    background-color: #f6c4a2;
+    border-color: #f6c4a2;
+}
+
+#div_img img {
+    width: 450px;
+    object-fit: contain;
+}
+
+a {
+    width: 100%;
+    text-decoration: none;
+    color: #dd724d;
+    text-align: center;
+}

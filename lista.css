@@ -1,0 +1,169 @@
+body {
+    background-color: #ede5db;
+}
+
+#main_header {
+    background-color: #ede5db;
+    height: 120px;
+}
+
+header img {
+    width: 130px;
+    margin-left: 50px;
+    margin-top: 15px;
+}
+
+header img:hover {
+    cursor: pointer;
+}
+
+.navBar {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 80px;
+}
+
+.navBar li {
+    list-style: none;
+    text-transform: uppercase;
+    font-weight: 680;
+    font-size: 17px;
+    margin-top: -85px;
+    margin-left: 125px;
+}
+
+.navBar li a {
+    text-decoration: none;
+    color: #dd724d;
+}
+
+#exit {
+    width: 38px;
+    height: 38px;
+    background-color: #dd724d;
+    opacity: 0.8;
+    border-color: #dd724d;
+    border-radius: 45%;
+}
+
+#exit :hover {
+    cursor: pointer;
+}
+
+#icon {
+    color: #ede5db;
+}
+
+h1 {
+    margin-top: 30px;
+    margin-left: 60px;
+    color: #dd724d;
+}
+
+#main {
+    display: flex;
+}
+
+.urgency {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.envolves_input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.envolves_input p {
+    margin-right: 8px;
+}
+
+#labels, #inputs {
+    height: 100px;
+    align-items: center;
+}
+
+#unit {
+    margin-left: 6px;
+    height: 25px;
+    width: 120px;
+    background-color: rgba(194,189,184,.35);
+    opacity: 0.2;
+}
+
+#unit #select {
+    background-color: rgba(194,189,184,.35);
+}
+
+.inputs_txt {
+    width: 210px;
+    height: 28px;
+    background-color: rgba(194,189,184,.35);
+    border-radius: 6px;
+    border-color: rgba(194,189,184,.35);
+    /* opacity: 0.2; */
+}
+
+.inputs_txt::placeholder {
+    color: black;
+    padding: 11px;
+}
+
+#unit::placeholder {
+    color: black;
+    padding: 11px;
+}
+
+#add_item {
+    height: 200px;
+    width: 45%;
+    padding-top: 30px;
+    padding-left: 80px;
+}
+
+button {
+    width: 95px;
+    height: 35px;
+    border-radius: 6px;
+    background-color: #dd724d;
+    opacity: 0.7;
+    border-color: #dd724d;
+    color: white;
+}
+
+#sec_list {
+    width: 45%;
+    /* height: 70%; */
+}
+
+#important_high {
+    color: red;
+}
+
+#important_medium {
+    color: orange;
+}
+
+#important_low {
+    color: green;
+}
+
+.item_list {
+    margin-bottom: 5px;
+}
+
+#delete_btn {
+    width: 30px;
+    border-radius: 50%;
+}
+
+#scroll {
+    height: 360px;
+    margin: 5px;
+    padding: 5px;
+    overflow: auto;
+}
