@@ -11,6 +11,12 @@ Mateus Cursino <br />
 4. O usuário deve ser capaz de avaliar receitas.
 5. O usuário deve ser capaz de ver as receitas mais bem avaliadas.
 6. O usuário deve ser capaz de salvar suas receitas favoritas.
+7. Usuário deve ser capaz de adicionar valores nutricionais de alimentos 
+8. Usuário deve ser de publicar receitas, para outros usuários terem acesso
+9. O sistema deve contabilizar os valores nutricionais de uma receita a partir de seus ingredientes
+10. O usuário deve ser capaz de retirar e adicionar um item de sua lista de compras
+11. O usuário deve ser capaz de filtrar receitas por categoria
+12. O usuário deve ser capaz de criar itens recorrentes em sua lista de compras
 
 
 # Backlog do Sprint
@@ -40,3 +46,10 @@ Mateus Cursino <br />
 ## História #5:
   * Implementar banco de dados para que um usuário salve receitas favoritas.
   * Implementar página para que um usuário visualize suas receitas salvas
+
+## História #11:
+  * O usuário deve ser capaz de filtrar receitas por categoria.
+  * Implementar o atributo "categoria" para receitas no banco de dados.
+  * Adicionar campo de categoria ao cadastrar uma receita.
+  * Criar interface para escolher a categoria desejada e exibir as receitas filtradas na tela.
+
