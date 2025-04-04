@@ -55,10 +55,23 @@ header img:hover {
     color: #ede5db;
 }
 
+#top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
 h1 {
     margin-top: 30px;
     margin-left: 60px;
     color: #dd724d;
+    width: 40%;
+}
+
+#name {
+    width: 40%;
 }
 
 #ingredients {
@@ -72,6 +85,12 @@ h1 {
 
 #register_recipe, #shows_ingred {
     width: 45%;
+    height: 550px;
+}
+
+#register_ingr, #register_steps {
+    height: 36%;
+    overflow: auto;
 }
 
 input {
@@ -82,12 +101,12 @@ input {
     /* margin-right: 10px; */
 }
 
-.add_ingr {
+.add_ingr, #recipe_name {
     width: 220px;
 }
 
 select {
-    margin-top: 8px;
+    margin-top: 5px;
     height: 25px;
     width: 220px;
     background-color: rgba(194,189,184,.55);
@@ -112,6 +131,7 @@ button {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 #edit_ingr {
@@ -121,13 +141,14 @@ button {
 }
 
 #reg_rec {
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 #prepare {
     width: 90%;
-    height: 200px;
+    height: 180px;
     background-color: rgba(194,189,184,.35);
     border-radius: 6px;
     border-color: rgba(194,189,184,.35);
 }
+

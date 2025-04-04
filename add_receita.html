@@ -27,10 +27,16 @@
 
     <hr color="#dd724d" width="95%">
 
-    <h1>Registre aqui as suas receitas</h1>
+    <div id="top">
+        <h1>Registre aqui as suas receitas</h1>
+        <h2 id="name"></h2>
+    </div>
     <div id="ingredients">
         <div id="register_recipe">
             <form id="input_ingred">
+                <input id="recipe_name" type="text" placeholder="Digite o nome da receita...">
+                <button id="btn_name">Salvar</button>
+                
                 <h2>Preencha os ingredientes necessários</h2>
                 <input class="add_ingr" id="ingr" type="text" placeholder="Digite o ingrediente...">
                 <input class="add_ingr" id="qntd" type="number" placeholder="Digite a quantidade necessária...">
@@ -46,6 +52,7 @@
                             <option value="xícara de chá">xícara de chá</option>
                             <option value="colher de chá">colher de chá</option>
                             <option value="colher de sopa">colher de sopa</option>
+                            <option value="pitada">pitada</option>
                         </select>
                     <br>
                 <button id="btn_add">Adicionar</button>
@@ -65,15 +72,17 @@
 
 
         <div id="shows_ingred">
+            <h2>Ingredientes</h2>
             <div id="register_ingr">
-                <h2>Ingredientes</h2>
-                <ul id="list_ingred">
-    
-                </ul>
+                <div>
+                    <ul id="list_ingred"></ul>
+                </div>
             </div>
+            <h2>Modo de preparo</h2>
             <div id="register_steps">
-                <h2>Modo de preparo</h2>
-                <div id="modo_preparo"></div>
+                <div>
+                    <div id="modo_preparo"></div>
+                </div>
             </div>
         </div>
     </div>

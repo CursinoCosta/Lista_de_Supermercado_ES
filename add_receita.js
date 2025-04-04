@@ -1,3 +1,6 @@
+let name_recipe = document.querySelector("#recipe_name");
+let btn_name = document.querySelector("#btn_name");
+let hold_name = document.querySelector("#name");
 let div_add = document.querySelector("#input_ingred");
 let input_ingred = document.querySelector("#ingr");
 let input_qntd = document.querySelector("#qntd");
@@ -10,6 +13,11 @@ let prepare = document.querySelector("#prepare");
 let modo_preparo = document.querySelector("#modo_preparo");
 let txtarea = document.querySelector('textarea');
 
+function recipe_name(form) {
+    form.preventDefault();
+    hold_name.innerHTML += (name_recipe.value).charAt(0).toUpperCase() + (name_recipe.value).slice(1);
+    name_recipe.value = "";
+}
 
 function get_ingr(form) {
     form.preventDefault();
@@ -46,5 +54,6 @@ function get_recipe(form) {
     txtarea.value = "";
 }
 
+btn_name.addEventListener("click", recipe_name);
 btn_add.addEventListener("click", get_ingr);
 btn_save.addEventListener("click", get_recipe);
