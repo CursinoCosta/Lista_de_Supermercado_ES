@@ -15,11 +15,20 @@ let txtarea = document.querySelector('textarea');
 
 function recipe_name(form) {
     form.preventDefault();
+
+    if(name_recipe.value == "") {
+        alert("Erro! Você deve preencher o campo referente ao Nome da Receita.")
+        return;
+    }
     hold_name.innerHTML += (name_recipe.value).charAt(0).toUpperCase() + (name_recipe.value).slice(1);
     name_recipe.value = "";
 }
 
 function get_ingr(form) {
+    if(input_ingred.value == "" || input_unit.value == "" || input_qntd.value == "") {
+        alert("Erro! Você deve preencher todos os campo referentes aos Ingredientes.")
+        return;
+    }
     form.preventDefault();
 
     let item_name = (input_ingred.value).charAt(0).toUpperCase() + (input_ingred.value).slice(1);
@@ -49,6 +58,10 @@ function get_ingr(form) {
 
 function get_recipe(form) {
     form.preventDefault();
+    if(name_recipe.value == "") {
+        alert("Erro! Você deve preencher campo referente ao Modo de Preparo.")
+        return;
+    }
     console.log(prepare.value);
     modo_preparo.innerHTML = prepare.value;
     txtarea.value = "";
