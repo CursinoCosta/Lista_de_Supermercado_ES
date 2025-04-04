@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Receitas</title>
+
+    <link rel="stylesheet" href="add_receita.css" type="text/css">
+
+    <script src="https://kit.fontawesome.com/a2f3e645e9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header id="main_header">
+
+        <img src="./images/logo.png" alt="LOGO">
+
+        <nav>
+            <ul class="navBar">
+                <li id="item_navbar"><a href="lista.html">Sua lista</a></li>
+                <li id="item_navbar"><a href="receitas.html">Suas receitas</a></li>
+                <li id="item_navbar"><a href="add_receita.html">Adicione receitas</a></li>
+                <li id="item_navbar"><a href="perfil.html">Perfil</a></li>
+                <li><button id="exit"><i id="icon" class="fa-solid fa-arrow-right-from-bracket fa-xl"></i></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr color="#dd724d" width="95%">
+
+    <h1>Registre aqui as suas receitas</h1>
+    <div id="ingredients">
+        <div id="register_recipe">
+            <form id="input_ingred">
+                <h2>Preencha os ingredientes necessários</h2>
+                <input class="add_ingr" id="ingr" type="text" placeholder="Digite o ingrediente...">
+                <input class="add_ingr" id="qntd" type="number" placeholder="Digite a quantidade necessária...">
+                <br>
+                <select id="unit">
+                            <option id="select" value="select" selected disabled hidden>Selecione a unidade de medida</option>
+                            <option value="unidade">unidade</option>
+                            <option value="pacote">pacote</option>
+                            <option value="grama">grama</option>
+                            <option value="quilograma">quilograma</option>
+                            <option value="mililitro">mililitro</option>
+                            <option value="litro">litro</option>
+                            <option value="xícara de chá">xícara de chá</option>
+                            <option value="colher de chá">colher de chá</option>
+                            <option value="colher de sopa">colher de sopa</option>
+                        </select>
+                    <br>
+                <button id="btn_add">Adicionar</button>
+            </form>
+            <br>
+
+            <hr color="#edab94" width="90%">
+
+            <form id="reg_rec">
+                <h2>Registre o modo de preparo</h2>
+                <textarea id="prepare" type="text" placeholder="Digite o modo de preparo..."></textarea>
+                <!-- <input id="prepare" type="text" placeholder="Digite o modo de preparo..."> -->
+                <br>
+                <button id="btn_save">Salvar</button>
+            </form>
+        </div>
+
+
+        <div id="shows_ingred">
+            <div id="register_ingr">
+                <h2>Ingredientes</h2>
+                <ul id="list_ingred">
+    
+                </ul>
+            </div>
+            <div id="register_steps">
+                <h2>Modo de preparo</h2>
+                <div id="modo_preparo"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="add_receita.js"></script>
+</body>
+</html>
