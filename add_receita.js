@@ -69,11 +69,10 @@ function get_ingr(form) {
 
 function get_recipe(form) {
     form.preventDefault();
-    if(name_recipe.value == "") {
+    if(prepare.value == "") {
         alert("Erro! Você deve preencher campo referente ao Modo de Preparo.")
         return;
     }
-    console.log(prepare.value);
     modo_preparo.innerHTML = prepare.value;
     txtarea.value = "";
 }
