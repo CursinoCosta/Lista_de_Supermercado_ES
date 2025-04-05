@@ -12,6 +12,7 @@ let _form = document.querySelector('form');
 let prepare = document.querySelector("#prepare");
 let modo_preparo = document.querySelector("#modo_preparo");
 let txtarea = document.querySelector('textarea');
+let input_category = document.querySelector("#category");
 
 function recipe_name(form) {
     form.preventDefault();
@@ -20,8 +21,18 @@ function recipe_name(form) {
         alert("Erro! Você deve preencher o campo referente ao Nome da Receita.")
         return;
     }
-    hold_name.innerHTML += (name_recipe.value).charAt(0).toUpperCase() + (name_recipe.value).slice(1);
+
+    if(input_category.value == "") {
+        alert("Erro! Você deve selecionar uma Categoria para a Receita.");
+        return;
+    }
+
+    let formatted_name = (name_recipe.value).charAt(0).toUpperCase() + (name_recipe.value).slice(1);
+    let formatted_cat = (input_category.value).charAt(0).toUpperCase() + (input_category.value).slice(1);
+
+    hold_name.innerHTML += `<strong>${formatted_name}</strong> <span style="color: gray;">(${formatted_cat})</span>`;
     name_recipe.value = "";
+    input_category.value = "";
 }
 
 function get_ingr(form) {

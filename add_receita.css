@@ -152,3 +152,11 @@ button {
     border-color: rgba(194,189,184,.35);
 }
 
+#category {
+    margin-top: 10px;
+    height: 30px;
+    width: 220px;
+    background-color: rgba(194,189,184,.45);
+    opacity: 0.4;
+    border-radius: 6px;
+}
