@@ -13,6 +13,7 @@ let prepare = document.querySelector("#prepare");
 let modo_preparo = document.querySelector("#modo_preparo");
 let txtarea = document.querySelector('textarea');
 let input_category = document.querySelector("#category");
+let selectCategory = document.querySelector("#category");
 
 function recipe_name(form) {
     form.preventDefault();
@@ -80,3 +81,19 @@ function get_recipe(form) {
 btn_name.addEventListener("click", recipe_name);
 btn_add.addEventListener("click", get_ingr);
 btn_save.addEventListener("click", get_recipe);
+selectCategory.addEventListener("change", function () {
+    if (selectCategory.value === "nova") {
+        let novaCategoria = prompt("Digite o nome da nova categoria:");
+
+        if (novaCategoria) {
+            novaCategoria = novaCategoria.charAt(0).toUpperCase() + novaCategoria.slice(1).toLowerCase();
+            let option = document.createElement("option");
+            option.value = novaCategoria.toLowerCase();
+            option.textContent = novaCategoria;
+            selectCategory.insertBefore(option, selectCategory.lastElementChild);
+            selectCategory.value = novaCategoria.toLowerCase();
+        } else {
+            selectCategory.value = "";
+        }
+    }
+});
