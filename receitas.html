@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suas receitas</title>
+
+    <link rel="stylesheet" href="receitas.css" type="text/css">
+
+    <script src="https://kit.fontawesome.com/a2f3e645e9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header id="main_header">
+
+        <img src="./images/logo.png" alt="LOGO">
+
+        <nav>
+            <ul class="navBar">
+                <li id="item_navbar"><a href="lista.html">Sua lista</a></li>
+                <li id="item_navbar"><a href="receitas.html">Suas receitas</a></li>
+                <li id="item_navbar"><a href="add_receita.html">Adicione receitas</a></li>
+                <li id="item_navbar"><a href="perfil.html">Perfil</a></li>
+                <li><button id="exit"><i id="icon" class="fa-solid fa-arrow-right-from-bracket fa-xl"></i></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr color="#dd724d" width="95%">
+
+    <h1>Veja aqui as receitas</h1>
+
+    <div class="card">
+        <div class="card">
+            <p>Bolo de cenoura</p>
+            <p>Categoria: Lanche</p>
+            <button id="btn_open">Abrir</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="meuModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Exemplo de Código HTML</h2>
+            <p>Ingredientes:</p>
+            <ul>
+                <li>Trigo</li>
+                <li>Ovo</li>
+                <li>Cenoura</li>
+                <li>Fermento</li>
+            </ul>
+            <br>
+            <p>Modo de preparo</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.</p>
+        </div>
+    </div>
+
+    <script src="receitas.js"></script>
+</body>
+</html>

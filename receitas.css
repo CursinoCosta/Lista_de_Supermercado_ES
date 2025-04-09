@@ -1,0 +1,107 @@
+body {
+    background-color: #ede5db;
+}
+
+#main_header {
+    background-color: #ede5db;
+    height: 120px;
+}
+
+header img {
+    width: 130px;
+    margin-left: 50px;
+    margin-top: 15px;
+}
+
+header img:hover {
+    cursor: pointer;
+}
+
+.navBar {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 80px;
+}
+
+.navBar li {
+    list-style: none;
+    text-transform: uppercase;
+    font-weight: 680;
+    font-size: 17px;
+    margin-top: -85px;
+    margin-left: 125px;
+}
+
+.navBar li a {
+    text-decoration: none;
+    color: #dd724d;
+}
+
+#exit {
+    width: 38px;
+    height: 38px;
+    background-color: #dd724d;
+    opacity: 0.8;
+    border-color: #dd724d;
+    border-radius: 45%;
+}
+
+#exit :hover {
+    cursor: pointer;
+}
+
+#icon {
+    color: #ede5db;
+}
+
+h1 {
+    margin-top: 30px;
+    margin-left: 60px;
+    color: #dd724d;
+}
+
+/* Estilo para o modal */
+.modal {
+    display: none; /* Esconde por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* fundo escuro semi-transparente */
+  }
+
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: #000;
+  }
+
+  pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
