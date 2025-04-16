@@ -4,7 +4,7 @@
   "description": "- O sistema proposto consiste em um software cuja principal função é registrar a lista de mercado do usuário, bem como receitas que ele deseja salvar.  Dessa forma, temos como objetivo desenvolver uma plataforma de uso simples e rápido, onde os usuários consigam achar a lista de mercado de maneira fácil durante a correria do dia a dia, sem ter que se preocupar em não perder o pedaço de papel com a lista. As principais features que buscam implementar são: uma aba onde o usuário pode visualizar os itens inseridos na lista de compras (além disso, também deve ser capaz de deletá-los quando convém), além de poder inserir mais itens; deve haver outra aba para registrar receitas, podendo, também, favoritá-las e filtrá-las de acordo com a categoria da receita. Dessa forma, ao implementar tais features, iremos desenvolver um sistema completo e útil para o dia a dia das pessoas.",
   "main": "src/app.js",
   "scripts": {
-    "dev" : "nodemon src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/CursinoCosta/Lista_de_Supermercado_ES#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "nodemon": "^3.1.9"
   }

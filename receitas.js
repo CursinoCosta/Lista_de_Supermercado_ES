@@ -19,3 +19,16 @@ window.onclick = function(event) {
 
 btn_open.addEventListener("click", abrirModal);
 btn_close.addEventListener("click", fecharModal);
+
+// Função para direcionar cadastros (Temporaria)
+function verificarCadastro() {
+    const estaCadastrado = localStorage.getItem('usuarioCadastrado');
+
+    if (estaCadastrado === 'true') {
+        // Redireciona para o perfil
+        window.location.href = 'perfil.html';
+    } else {
+        // Redireciona para o cadastro
+        window.location.href = 'cadastro.html';
+    }
+}

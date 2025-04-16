@@ -11,10 +11,35 @@ let confirm_password_signup = document.querySelector("#confirm_password");
 
 function login(form) {
     form.preventDefault();
-    console.log("Funcionou");
 
-    window.location.href = "./lista.html"
+    const dados = {
+        nomeUsuario: user_name.value,
+        senha: password.value
+    };
+
+    fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados)
+    })
+    .then(res => {
+        if (!res.ok) {
+            return res.json().then(data => {
+                throw new Error(data.mensagem || "Erro ao fazer login");
+            });
+        }
+        return res.json();
+    })
+    .then(data => {
+        alert(data.mensagem);
+        localStorage.setItem("usuarioCadastrado", "true");
+        window.location.href = "./lista.html";
+    })
+    .catch(err => {
+        alert("Erro: " + err.message);
+    });
 }
+
 
 function cadastro(form) {
     form.preventDefault();
@@ -34,7 +59,38 @@ function cadastro(form) {
         return;
     }
 
-    alert("Cadastro realizado com sucesso")
+    const dados = {
+        email: email_signup.value,
+        nomeCompleto: name_signup.value,
+        nomeUsuario: username_signup.value,
+        senha: password_signup.value
+    };
+
+    fetch('http://localhost:3000/cadastro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+    })
+    .then(res => {
+        if (!res.ok) {
+            return res.json().then(data => {
+                throw new Error(data.mensagem || 'Erro ao cadastrar');
+            });
+        }
+        return res.json();
+    })
+    .then(data => {
+        alert(data.mensagem);
+        localStorage.setItem('usuarioCadastrado', 'true');
+        window.location.href = "perfil.html"; // ou login.html, dependendo do fluxo
+    })
+    .catch(err => {
+        alert("Erro: " + err.message);
+    });
+
+    //alert("Cadastro realizado com sucesso")
 }
 
 if(btn_login) {
