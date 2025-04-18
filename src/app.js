@@ -1,10 +1,12 @@
-import {openDb} from './configDb.js'
+//import {openDb} from './configDb.js'
+import { createTable, insertUsuario } from '../Controler/usuario.js';
 
 
 import express from 'express';
 const app = express();
 
-openDb();
+//openDb();
+createTable();
 
 app.get('/', function(req, res){
     res.send("teste");
