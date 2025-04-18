@@ -1,5 +1,10 @@
-const express = require('express');
+import {openDb} from './configDb.js'
+
+
+import express from 'express';
 const app = express();
+
+openDb();
 
 app.get('/', function(req, res){
     res.send("teste");
