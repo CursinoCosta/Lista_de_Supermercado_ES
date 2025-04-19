@@ -19,8 +19,8 @@
                 <li id="item_navbar"><a href="lista.html">Sua lista</a></li>
                 <li id="item_navbar"><a href="receitas.html">Suas receitas</a></li>
                 <li id="item_navbar"><a href="add_receita.html">Adicione receitas</a></li>
-                <!-- <li id="item_navbar"><a href="perfil.html">Perfil</a></li> -->
-                <li id="item_navbar"><a href="#" onclick="verificarCadastro()">Perfil</a></li>
+                <li id="item_navbar"><a href="perfil.html">Perfil</a></li>
+                <!-- <li id="item_navbar"><a href="#" onclick="verificarCadastro()">Perfil</a></li> -->
                 <li><button id="exit"><i id="icon" class="fa-solid fa-arrow-right-from-bracket fa-xl"></i></button></li>
             </ul>
         </nav>
@@ -30,16 +30,34 @@
 
     <h1>Veja aqui as receitas</h1>
 
-    <div class="card">
+    <select class="categories">
+        <option value="" selected disabled hidden>Selecione a categoria da receita</option>
+        <option value="café-da-manhã">Café da manhã</option>
+        <option value="almoço">Almoço</option>
+        <option value="jantar">Jantar</option>
+        <option value="lanche">Lanche</option>
+        <option value="sobremesa">Sobremesa</option>
+        <option value="vegetariana">Vegetariana</option>
+        <option value="vegana">Vegana</option>
+        <option value="lowcarb">Low Carb</option>
+    </select>
+
+    <div class="cards">
         <div class="card">
             <p>Bolo de cenoura</p>
             <p>Categoria: Lanche</p>
-            <button id="btn_open">Abrir</button>
+            <button class="btn_open" data-modal="modal1">Abrir</button>
+        </div>
+
+        <div class="card">
+            <p>Pão de queijo</p>
+            <p>Categoria: Lanche</p>
+            <button class="btn_open" data-modal="modal2">Abrir</button>
         </div>
     </div>
 
     <!-- Modal -->
-    <div id="meuModal" class="modal">
+    <div id="modal1" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Exemplo de Código HTML</h2>
@@ -49,10 +67,38 @@
                 <li>Ovo</li>
                 <li>Cenoura</li>
                 <li>Fermento</li>
+                <li>Trigo</li>
+                <li>Ovo</li>
+                <li>Cenoura</li>
+                <li>Fermento</li>
+                <li>Trigo</li>
+                <li>Ovo</li>
+                <li>Cenoura</li>
+                <li>Fermento</li>
             </ul>
             <br>
             <p>Modo de preparo</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Exemplo de Código HTML</h2>
+            <p>Ingredientes:</p>
+            <ul>
+                <li>Trigo</li>
+                <li>Ovo</li>
+                <li>Cenoura</li>
+                <li>Fermento</li>
+                <li>Trigo</li>
+                <li>Ovo</li>
+            </ul>
+            <br>
+            <p>Modo de preparo</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident eligendi consectetur ad fuga error quia, eum porro. Iste voluptas perferendis maxime tempora hic eos veritatis possimus saepe! Libero, cupiditate veniam.Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
         </div>
     </div>
 
