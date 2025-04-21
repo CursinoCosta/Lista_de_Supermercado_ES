@@ -15,18 +15,18 @@ export async function createTable(){
 
 export async function insertUsuario(User){
     openDb().then(db => {
-        db.run('INSERT INTO Usuario (email, nomeCompleto, nomeUsuario, senha) VALUES (?, ?, ?, ?)',[User.email, User.nomeCompleto, User.nomeUsuario, User.senha])
+        db.run('INSERT INTO Usuarios (email, nomeCompleto, nomeUsuario, senha) VALUES (?, ?, ?, ?)',[User.email, User.nomeCompleto, User.nomeUsuario, User.senha])
     })
 }
 
 export async function updateUsuario(id, User) {
     openDb().then(db => {
-        db.run('UPDATE Usuario SET email=?, nomeCompleto=?, nomeUsuario=?, senha=? WHERE id=?', [User.email, User.nomeCompleto, User.nomeUsuario, User.senha, id]);
+        db.run('UPDATE Usuarios SET email=?, nomeCompleto=?, nomeUsuario=?, senha=? WHERE UsuarioID=?', [User.email, User.nomeCompleto, User.nomeUsuario, User.senha, id]);
     });
 }
 
 export async function deleteUsuario(id) {
     openDb().then(db => {
-        db.run('DELETE FROM Usuario WHERE id=?', [id]);
+        db.run('DELETE FROM Usuarios WHERE UsuarioID=?', [id]);
     });
 }
