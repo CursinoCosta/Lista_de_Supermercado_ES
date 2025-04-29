@@ -16,28 +16,33 @@ function login(form) {
         nomeUsuario: user_name.value,
         senha: password.value
     };
-
-    fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+    fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(dados)
     })
     .then(res => {
+        console.log(res);  
         if (!res.ok) {
             return res.json().then(data => {
-                throw new Error(data.mensagem || "Erro ao fazer login");
+                throw new Error(data.mensagem || 'Erro ao cadastrar');
             });
         }
         return res.json();
     })
     .then(data => {
+        console.log(data);  
         alert(data.mensagem);
-        localStorage.setItem("usuarioCadastrado", "true");
-        window.location.href = "./lista.html";
+        localStorage.setItem('usuarioCadastrado', 'true');
+        window.location.href = "perfil.html";
     })
     .catch(err => {
+        console.log(err);  
         alert("Erro: " + err.message);
     });
+    
 }
 
 
