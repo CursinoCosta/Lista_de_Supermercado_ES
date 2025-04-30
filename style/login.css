@@ -3,7 +3,7 @@
     justify-content: space-between; /* Mantém uma div à esquerda e outra à direita */
     align-items: center; /* Centraliza as divs verticalmente */
     margin-top: 150px;
-    background-image: url("./images/fundo\ login.png");
+    background-image: url("../images/fundo\ login.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
