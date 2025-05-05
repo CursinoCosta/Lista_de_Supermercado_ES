@@ -8,7 +8,7 @@ export async function createTable(){
         db.exec('CREATE TABLE IF NOT EXISTS IngredientesReceitas (ReceitaID INTEGER, Ingrediente TEXT,	NomeReceita TEXT, Quantidade INTEGER, UnidadeMedida TEXT, FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         db.exec('CREATE TABLE IF NOT EXISTS InstrucaoReceitas (ReceitaID INTEGER, Instrucao TEXT, FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         
-        db.exec('CREATE TABLE IF NOT EXISTS Lista (Item TEXT, Quantidade INTEGER, UnidadeMedida TEXT, Prioridade INTEGER )')
+        db.exec('CREATE TABLE IF NOT EXISTS Lista (UsuarioID INTERGER, Item TEXT, Quantidade INTEGER, UnidadeMedida TEXT, Prioridade INTEGER,FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuairoID) )')
 
     })
 }
@@ -103,3 +103,45 @@ export async function deleteReceita(Receitaid) {
         db.run('DELETE FROM IngredientesReceitas WHERE ReceitaID=?', [Receitaid]);
     });
 }
+
+// Lista DB
+
+
+export async function insertItem(UserID, Item){
+    openDb().then(db => {
+        db.run('INSERT INTO Lista (UsuarioID, Item, Quantidade, UnidadeMedida, Prioridade) VALUES (?, ?, ?, ?, ?)',[UserID, Item.Item, Item.Quantidade, Item.UnidadeMedida, Item.Prioridade])
+    })
+} 
+
+
+export async function deleteItem(UserID, Item){
+    openDb().then(db => {
+        db.run('DELETE FROM InstrucaoReceitas WHERE UsuarioID=? AND Item=?', [UserID,Item]);
+    })
+} 
+
+export async function updateItem(UserID, newItem) {
+    openDb().then(db => {
+        db.run('UPDATE Lista SET UsuarioID=?, Item=?, Quantidade=?, UnidadeMedida=?, Prioridade=? WHERE UsuarioID=? AND Item=?', [UserID, newItem.Item, newItem.Quantidade, newItem.UnidadeMedida, newItem.Prioridade, UserID, newItem.Item]);
+    });
+}
+
+export async function getItens(UserID) {
+    return new Promise((resolve, reject) => {
+      openDb.all("SELECT col1, col2 FROM Table WHERE UsuarioID = ?", [UserID], (err, rows) => {
+        if (err) {
+          console.error("Erro ao executar a query:", err.message);
+          reject(err);
+          return;
+        }
+        const lista = rows.map(row => ({
+          UsuarioID: parseInt(row.UsuarioID),
+          Item: row.Item,
+          Quantidade: parseInt(row.Quantidade),
+          UnidadeMedida: row.UnidadeMedida,
+          Prioridade: parseInt(row.Prioridade)
+        }));
+        resolve(lista);
+      });
+    });
+  }
