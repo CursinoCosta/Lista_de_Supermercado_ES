@@ -2,11 +2,16 @@ import cors from 'cors';
 import {openDb} from './configDb.js'
 import * as dbFunctions from '../Controler/dbFunctions.js';
 
-
-import express from 'express';    
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url'; // Importa utilitário do Node.js
+import { dirname } from 'path';
+ 
 const app = express();
 
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(express.json());
 
@@ -16,17 +21,24 @@ app.use(cors({ origin: 'http://127.0.0.1:5500' }));
 
 dbFunctions.createTable();
 
-app.get('/', function(req, res){
-    res.send("teste");
-})
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.post('/usuario',function(req,res){
+// Rota para a página de login
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
+});
+
+app.get('/', (req, res) => {
+  res.redirect('/login');
+});
+
+/*app.post('/usuario',function(req,res){
     //console.log(req.body)
     dbFunctions.insertUsuario(req.body)
     res.json({
         "statuscode" : 200
     })
-})
+})*/
 
 app.post('/cadastro', (req, res) => {
     const dados = req.body;

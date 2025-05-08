@@ -104,6 +104,48 @@ export async function deleteReceita(Receitaid) {
     });
 }
 
+export async function getIngredientesReceita(UserID, ReceitaID) {
+    return new Promise((resolve, reject) => {
+      openDb.all("SELECT * FROM Receitas WHERE UsuarioID = ? AND ReceitaID = ?", [UserID, ReceitaID], (err, rows) => {
+        if (err) {
+          console.error("Erro ao executar a query:", err.message);
+          reject(err);
+          return;
+        }
+        const lista = rows.map(row => ({
+          RecietaID: parseInt(row.ReceitaID),
+          UsuarioID: parseInt(row.UsuarioID),
+          Item: row.Item,
+          Quantidade: parseInt(row.Quantidade),
+          UnidadeMedida: row.UnidadeMedida,
+          Prioridade: parseInt(row.Prioridade)
+        }));
+        resolve(lista);
+      });
+    });
+  }
+
+  export async function getInstrucaoReceita(UserID, ReceitaID) {
+    return new Promise((resolve, reject) => {
+      openDb.all("SELECT * FROM Receitas WHERE UsuarioID = ? AND ReceitaID = ?", [UserID, ReceitaID], (err, rows) => {
+        if (err) {
+          console.error("Erro ao executar a query:", err.message);
+          reject(err);
+          return;
+        }
+        const lista = rows.map(row => ({
+          RecietaID: parseInt(row.ReceitaID),
+          UsuarioID: parseInt(row.UsuarioID),
+          Item: row.Item,
+          Quantidade: parseInt(row.Quantidade),
+          UnidadeMedida: row.UnidadeMedida,
+          Prioridade: parseInt(row.Prioridade)
+        }));
+        resolve(lista);
+      });
+    });
+  }
+
 // Lista DB
 
 
@@ -128,7 +170,7 @@ export async function updateItem(UserID, newItem) {
 
 export async function getItens(UserID) {
     return new Promise((resolve, reject) => {
-      openDb.all("SELECT col1, col2 FROM Table WHERE UsuarioID = ?", [UserID], (err, rows) => {
+      openDb.all("SELECT * FROM Lista WHERE UsuarioID = ?", [UserID], (err, rows) => {
         if (err) {
           console.error("Erro ao executar a query:", err.message);
           reject(err);
