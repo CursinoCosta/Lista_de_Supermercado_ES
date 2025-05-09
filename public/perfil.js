@@ -1,60 +1,10 @@
-// import { getUsuario } from './dbFunctions.js';
-
-// document.addEventListener('DOMContentLoaded', async () => {
-//     const emailSalvo = localStorage.getItem('usuarioEmail');
-
-//     if (!emailSalvo) {
-//         alert('Usuário não está logado.');
-//         window.location.href = 'login.html';
-//         return;
-//     }
-
-//     try {
-//         const usuario = await getUsuario(emailSalvo);
-
-//         if (!usuario) {
-//             alert('Usuário não encontrado.');
-//             return;
-//         }
-
-//         // Preenche os campos com os dados do usuário
-//         document.getElementById('nomeCompleto').textContent = usuario.nomeCompleto;
-//         document.getElementById('nomeUsuario').textContent = usuario.nomeUsuario;
-//         document.getElementById('emailUsuario').textContent = usuario.email;
-
-//         // Adiciona eventos de edição
-//         document.querySelectorAll('.editar-btn').forEach(button => {
-//             button.addEventListener('click', () => {
-//                 const infoItem = button.parentElement;
-//                 const span = infoItem.querySelector('.info-value');
-//                 const valorAtual = span.textContent;
-
-//                 if (button.textContent === 'Editar') {
-//                     const input = document.createElement('input');
-//                     input.type = 'text';
-//                     input.value = valorAtual;
-//                     input.className = 'input-editar';
-//                     infoItem.replaceChild(input, span);
-//                     button.textContent = 'Salvar';
-//                 } else {
-//                     const input = infoItem.querySelector('input');
-//                     const novoValor = input.value;
-//                     const novoSpan = document.createElement('span');
-//                     novoSpan.className = 'info-value';
-//                     novoSpan.textContent = novoValor;
-//                     infoItem.replaceChild(novoSpan, input);
-//                     button.textContent = 'Editar';
-//                 }
-//             });
-//         });
-
-//     } catch (erro) {
-//         console.error('Erro ao carregar dados do usuário:', erro);
-//         alert('Erro ao carregar dados do perfil.');
-//     }
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
+  inicializarPerfil();
+  configurarEdicaoDadosPerfil(); // apenas campos editáveis
+  configurarMudancaSenha();
+});
+
+function inicializarPerfil() {
   const nomeCompleto = localStorage.getItem("nomeCompleto");
   const nomeUsuario = localStorage.getItem("nomeUsuario");
   const email = localStorage.getItem("email");
@@ -68,5 +18,133 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("nomeCompleto").textContent = nomeCompleto;
   document.getElementById("nomeUsuario").textContent = nomeUsuario;
   document.getElementById("emailUsuario").textContent = email;
-});
+}
 
+function configurarEdicaoDadosPerfil() {
+  // const senhaArmazenada = localStorage.getItem("senha");
+  const senhaArmazenada = 123
+
+  // Seleciona apenas os botões de editar que tenham um span com classe 'info-value' (evita o botão de mudar senha)
+  const editarBtns = document.querySelectorAll(".info-item .editar-btn");
+
+  editarBtns.forEach((btn) => {
+    const valueSpan = btn.parentElement.querySelector(".info-value");
+    if (!valueSpan) return; // Ignora se não for um campo de edição de dado (ex: mudar senha)
+
+    btn.addEventListener("click", () => {
+      const parent = btn.parentElement;
+
+      if (btn.textContent === "Salvar") {
+        const input = parent.querySelector("input[type='text']");
+        const senhaInput = parent.querySelector("input[type='password']");
+        const newValue = input.value;
+        const senhaInserida = senhaInput.value;
+
+        if (senhaInserida !== senhaArmazenada) {
+          alert("Senha incorreta. As alterações não foram salvas.");
+          return;
+        }
+
+        // Atualiza o valor no localStorage
+        if (valueSpan.id === "nomeCompleto") {
+          localStorage.setItem("nomeCompleto", newValue);
+        } else if (valueSpan.id === "nomeUsuario") {
+          localStorage.setItem("nomeUsuario", newValue);
+        } else if (valueSpan.id === "emailUsuario") {
+          localStorage.setItem("email", newValue);
+        }
+
+        // Atualiza a interface
+        valueSpan.textContent = newValue;
+        valueSpan.style.display = "inline";
+        input.remove();
+        senhaInput.remove();
+        btn.textContent = "Editar";
+      } else {
+        // Modo edição
+        const currentValue = valueSpan.textContent;
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = currentValue;
+        input.className = "edit-input";
+
+        const senhaInput = document.createElement("input");
+        senhaInput.type = "password";
+        senhaInput.placeholder = "Digite sua senha";
+        senhaInput.className = "senha-input";
+
+        valueSpan.style.display = "none";
+        parent.insertBefore(input, btn);
+        parent.insertBefore(senhaInput, btn);
+        btn.textContent = "Salvar";
+      }
+    });
+  });
+}
+
+function configurarMudancaSenha() {
+  const mudarSenhaBtn = document.getElementById("mudarSenhaBtn");
+
+  mudarSenhaBtn.addEventListener("click", () => {
+    const parent = mudarSenhaBtn.parentElement;
+    //const senhaArmazenada = localStorage.getItem("senha");
+    const senhaArmazenada = 123
+
+    if (mudarSenhaBtn.textContent === "Salvar") {
+      const senhaAntigaInput = parent.querySelector(".senha-antiga-input");
+      const novaSenhaInput = parent.querySelector(".nova-senha-input");
+      const confirmarSenhaInput = parent.querySelector(".confirmar-senha-input");
+
+      const senhaAntiga = senhaAntigaInput.value;
+      const novaSenha = novaSenhaInput.value;
+      const confirmarSenha = confirmarSenhaInput.value;
+
+      if (senhaAntiga !== senhaArmazenada) {
+        alert("Senha antiga incorreta.");
+        return;
+      }
+
+      if (!novaSenha || novaSenha.length < 4) {
+        alert("A nova senha deve ter pelo menos 4 caracteres.");
+        return;
+      }
+
+      if (novaSenha !== confirmarSenha) {
+        alert("As novas senhas não coincidem.");
+        return;
+      }
+
+      // Atualiza senha
+      localStorage.setItem("senha", novaSenha);
+      alert("Senha alterada com sucesso!");
+
+      // Limpa campos
+      senhaAntigaInput.remove();
+      novaSenhaInput.remove();
+      confirmarSenhaInput.remove();
+      mudarSenhaBtn.textContent = "Mudar Senha";
+    } else {
+      // Cria inputs
+      const senhaAntigaInput = document.createElement("input");
+      senhaAntigaInput.type = "password";
+      senhaAntigaInput.placeholder = "Senha atual";
+      senhaAntigaInput.className = "senha-antiga-input";
+
+      const novaSenhaInput = document.createElement("input");
+      novaSenhaInput.type = "password";
+      novaSenhaInput.placeholder = "Nova senha";
+      novaSenhaInput.className = "nova-senha-input";
+
+      const confirmarSenhaInput = document.createElement("input");
+      confirmarSenhaInput.type = "password";
+      confirmarSenhaInput.placeholder = "Confirmar nova senha";
+      confirmarSenhaInput.className = "confirmar-senha-input";
+
+      parent.insertBefore(senhaAntigaInput, mudarSenhaBtn);
+      parent.insertBefore(novaSenhaInput, mudarSenhaBtn);
+      parent.insertBefore(confirmarSenhaInput, mudarSenhaBtn);
+      mudarSenhaBtn.textContent = "Salvar";
+    }
+  });
+}
