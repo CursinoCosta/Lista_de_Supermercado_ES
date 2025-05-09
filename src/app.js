@@ -1,6 +1,6 @@
 import cors from 'cors'; 
-import {openDb} from './configDb.js'
-import * as dbFunctions from '../Controler/dbFunctions.js';
+import {openDb} from '../public/Controler/configDb.js'
+import * as dbFunctions from '../public/Controler/dbFunctions.js';
 
 import express from 'express';
 import path from 'path';
@@ -32,13 +32,13 @@ app.get('/', (req, res) => {
   res.redirect('/login');
 });
 
-/*app.post('/usuario',function(req,res){
+app.post('/dev',function(req,res){
     //console.log(req.body)
-    dbFunctions.insertUsuario(req.body)
+    dbFunctions.insertItem(req.body);
     res.json({
-        "statuscode" : 200
+        "statuscode" : 300
     })
-})*/
+})
 
 app.post('/cadastro', (req, res) => {
     const dados = req.body;

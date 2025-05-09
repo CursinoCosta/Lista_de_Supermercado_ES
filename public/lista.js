@@ -1,4 +1,4 @@
-import * as dbFunctions from '../Controler/dbFunctions.js';
+
 
 let item = document.querySelector("#item");
 let quantity = document.querySelector("#quantity");
@@ -13,7 +13,7 @@ let div_medium = document.querySelector("#div_medium");
 let div_low = document.querySelector("#div_low");
 let _form = document.querySelector('form')
 
-
+//import * as dbFunctions from './Controler/dbFunctions.js'; isso nao é aqui
 
 // declarações das variáveis já presentes no arquivo 
 
@@ -22,7 +22,8 @@ function print_list() {
     // aqui deve adicionar o código que obtém a tabela das linhas referentes ao usuário logado no sistema
 
     //for loop que itera sobre cada linha
-    let dbout = dbFunctions.getItens;
+    //let dbout = dbFunctions.getItens(1); nao é aqui
+    
     for(const i of dbout){       
         let item_name = i.item;// atribui o valor da célula da coluna "Item" da tabela
         let qntd = i.Quantidade; // atribui o valor da célula da coluna "Quantidade" da tabela
