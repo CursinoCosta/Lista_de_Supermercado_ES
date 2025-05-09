@@ -123,6 +123,27 @@ button {
     color: white;
 }
 
+.container-salvar-receita {
+    margin-top: 30px;
+    text-align: center; 
+}
+
+#btn_final_save {
+    background-color: #dd724d; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    line-height: normal;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    min-width: 180px;
+}
+
 #btn_add, #btn_save {
     margin-top: 10px;
 }

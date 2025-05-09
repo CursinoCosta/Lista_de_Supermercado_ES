@@ -31,7 +31,7 @@ function recipe_name(form) {
     let formatted_name = (name_recipe.value).charAt(0).toUpperCase() + (name_recipe.value).slice(1);
     let formatted_cat = (input_category.value).charAt(0).toUpperCase() + (input_category.value).slice(1);
 
-    hold_name.innerHTML += `<strong>${formatted_name}</strong> <span style="color: gray;">(${formatted_cat})</span>`;
+    hold_name.innerHTML = `<strong>${formatted_name}</strong> <span style="color: gray;">(${formatted_cat})</span>`;
     name_recipe.value = "";
     input_category.value = "";
 }
@@ -96,4 +96,18 @@ selectCategory.addEventListener("change", function () {
             selectCategory.value = "";
         }
     }
+});
+
+let btn_final_save = document.querySelector("#btn_final_save");
+
+btn_final_save.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    if (hold_name.innerHTML.trim() === "" || div_shows.innerHTML.trim() === "" || modo_preparo.innerHTML.trim() === "") {
+        alert("Erro! Você deve preencher o nome, os ingredientes e o modo de preparo antes de salvar a receita completa.");
+        return;
+    }
+
+    alert("Receita salva com sucesso! ");
+
 });
