@@ -16,6 +16,7 @@ function login(form) {
         nomeUsuario: user_name.value,
         senha: password.value
     };
+
     fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
@@ -27,7 +28,7 @@ function login(form) {
         console.log(res);  
         if (!res.ok) {
             return res.json().then(data => {
-                throw new Error(data.mensagem || 'Erro ao cadastrar');
+                throw new Error(data.mensagem || 'Erro ao fazer login');
             });
         }
         return res.json();
@@ -35,14 +36,19 @@ function login(form) {
     .then(data => {
         console.log(data);  
         alert(data.mensagem);
+
+        // Armazena informações do usuário no localStorage
         localStorage.setItem('usuarioCadastrado', 'true');
+        localStorage.setItem('nomeUsuario', data.usuario.nomeUsuario);     // username
+        localStorage.setItem('nomeCompleto', data.usuario.nomeCompleto);   // nome completo
+        localStorage.setItem('email', data.usuario.email);                 // e-mail
+
         window.location.href = "perfil.html";
     })
     .catch(err => {
         console.log(err);  
         alert("Erro: " + err.message);
     });
-    
 }
 
 
@@ -89,6 +95,9 @@ function cadastro(form) {
     .then(data => {
         alert(data.mensagem);
         localStorage.setItem('usuarioCadastrado', 'true');
+        localStorage.setItem('nomeUsuario', username_signup.value); // Guarda o nome de usuário
+        localStorage.setItem('nomeCompleto', name_signup.value); // Guarda o nome completo
+        localStorage.setItem('email', email_signup.value); // Guarda o e-mail
         window.location.href = "perfil.html"; // ou login.html, dependendo do fluxo
     })
     .catch(err => {

@@ -74,7 +74,7 @@ app.post('/login', async (req, res) => {
       if (user) {
         return res.json({
           mensagem: 'Login bem-sucedido!',
-          usuario: { id: user.UsuarioID, nomeUsuario: user.nomeUsuario }
+          usuario: { id: user.UsuarioID, nomeUsuario: user.nomeUsuario, nomeCompleto: user.nomeCompleto, email: user.email }
         });
       } else {
         return res.status(401).json({ mensagem: 'Usuário ou senha incorretos.' });
@@ -85,6 +85,5 @@ app.post('/login', async (req, res) => {
       return res.status(500).json({ mensagem: 'Erro interno no servidor.' });
     }
   });
-
 
 app.listen(3000, ()=>console.log("rodando"))

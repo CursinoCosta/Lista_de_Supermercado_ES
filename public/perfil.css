@@ -60,3 +60,38 @@ h1 {
 #exit :hover {
     cursor: pointer;
 }
+
+.perfil-container {
+    margin: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+.info-label {
+    font-weight: bold;
+    color: #dd724d;
+    min-width: 150px;
+}
+
+.editar-btn {
+    background-color: #dd724d;
+    color: #ede5db;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.editar-btn:hover {
+    background-color: #c86541;
+}

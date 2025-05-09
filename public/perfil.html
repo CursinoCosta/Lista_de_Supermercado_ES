@@ -6,14 +6,11 @@
     <title>Seu perfil</title>
 
     <link rel="stylesheet" href="perfil.css" type="text/css">
-
     <script src="https://kit.fontawesome.com/a2f3e645e9.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header id="main_header">
-
         <img src="images/logo.png" alt="LOGO">
-
         <nav>
             <ul class="navBar">
                 <li id="item_navbar"><a href="lista.html">Sua lista</a></li>
@@ -26,10 +23,31 @@
     </header>
 
     <hr color="#dd724d" width="95%">
-
     <h1>Seu perfil</h1>
 
-    <script src="public_functions.js"></script>
+    <main class="perfil-container">
+        <div class="info-item">
+            <span class="info-label">Nome Completo:</span>
+            <span id="nomeCompleto" class="info-value">Carregando...</span>
+            <button class="editar-btn">Editar</button>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Nome de Usuário:</span>
+            <span id="nomeUsuario" class="info-value">Carregando...</span>
+            <button class="editar-btn">Editar</button>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Email:</span>
+            <span id="emailUsuario" class="info-value">Carregando...</span>
+            <button class="editar-btn">Editar</button>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Senha:</span>
+            <button id="mudarSenhaBtn" class="editar-btn">Mudar Senha</button>
+        </div>
+    </main>
 
+    <script src="public_functions.js"></script>
+    <script type="module" src="perfil.js"></script>
 </body>
 </html>
