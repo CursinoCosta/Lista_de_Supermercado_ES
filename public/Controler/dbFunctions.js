@@ -4,11 +4,11 @@ export async function createTable(){
     openDb().then(db => {
         db.exec('CREATE TABLE IF NOT EXISTS Usuarios (UsuarioID INTEGER, email TEXT PRIMARY KEY, nomeCompleto TEXT, nomeUsuario TEXT, senha TEXT)')
         
-        db.exec('CREATE TABLE IF NOT EXISTS Receitas (ReceitaID INTEGER, UsuarioID INTEGER PRIMARY KEY,	NomeReceita TEXT PRIMARY KEY, Categoria TEXT, Favorito BINARY, FOREIGN KEY (UsuarioID) REFERENCES Usuario(UsuarioID) )')
+        db.exec('CREATE TABLE IF NOT EXISTS Receitas (ReceitaID INTEGER, email TEXT PRIMARY KEY,	NomeReceita TEXT PRIMARY KEY, Categoria TEXT, Favorito BINARY, FOREIGN KEY (email) REFERENCES Usuario(email) )')
         db.exec('CREATE TABLE IF NOT EXISTS IngredientesReceitas (ReceitaID INTEGER PRIMARY KEY, Ingrediente TEXT PRIMARY KEY, Quantidade INTEGER, UnidadeMedida TEXT, FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         db.exec('CREATE TABLE IF NOT EXISTS InstrucaoReceitas (ReceitaID INTEGER PRIMARY KEY, Instrucao TEXT, FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         
-        db.exec('CREATE TABLE IF NOT EXISTS Lista (UsuarioID INTEGER PRIMARY KEY, Item TEXT PRIMARY KEY, Quantidade INTEGER, UnidadeMedida TEXT, Prioridade INTEGER,FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID) )')
+        db.exec('CREATE TABLE IF NOT EXISTS Lista (email INTEGER PRIMARY KEY, Item TEXT PRIMARY KEY, Quantidade INTEGER, UnidadeMedida TEXT, Prioridade INTEGER,FOREIGN KEY (email) REFERENCES Usuarios(email) )')
 
     })
 }
@@ -110,36 +110,36 @@ export async function deleteInstrucao(Receitaid) {
 
 export async function insertReceita(Receita){
     openDb().then(db => {
-        db.run('INSERT INTO Receitas (ReceitaID, UsuarioID, NomeReceita, Categoria, Favorito) VALUES (?, ?, ?, ?, ?)',[Receita.ReceitaID, Receita.UsuarioID, Receita.NomeReceita, Receita.Categoria, Receita.Favorito])
+        db.run('INSERT INTO Receitas (ReceitaID, email, NomeReceita, Categoria, Favorito) VALUES (?, ?, ?, ?, ?)',[Receita.ReceitaID, Receita.email, Receita.NomeReceita, Receita.Categoria, Receita.Favorito])
     })
 } 
 
-export async function updateReceita(NomeReceita, UserID, newReceita) {
+export async function updateReceita(NomeReceita, email, newReceita) {
     openDb().then(db => {
-        db.run('UPDATE Receitas SET NomeReceita=?, Categoria=?, Favorito=? WHERE NomeReceita=? AND UsuarioID=?', [newReceita.NomeReceita, newReceita.Categoria, newReceita.Favorito, NomeReceita, UserID]);
+        db.run('UPDATE Receitas SET NomeReceita=?, Categoria=?, Favorito=? WHERE NomeReceita=? AND email=?', [newReceita.NomeReceita, newReceita.Categoria, newReceita.Favorito, NomeReceita, email]);
     });
 }
 
-export async function deleteReceita(NomeReceita, UserID) {
+export async function deleteReceita(NomeReceita, email) {
     //Delete receita
     openDb().then(db => {
-        db.run('DELETE FROM Receitas WHERE NomeReceita=? AND UsuarioID=? ', [NomeReceita, UserID]);
+        db.run('DELETE FROM Receitas WHERE NomeReceita=? AND email=? ', [NomeReceita, email]);
     });
 
     //Delete instrucao
     openDb().then(db => {
-        db.run('DELETE FROM InstrucaoReceitas WHERE ReceitaID=(SELECT ReceitaID FROM Receitas WHERE NomeReceita=? AND UsuarioID=?)', [NomeReceita, UserID]);
+        db.run('DELETE FROM InstrucaoReceitas WHERE ReceitaID=(SELECT ReceitaID FROM Receitas WHERE NomeReceita=? AND email=?)', [NomeReceita, email]);
     });
 
     //Delete todos os ingredientes
     openDb().then(db => {
-        db.run('DELETE FROM IngredientesReceitas WHERE ReceitaID=(SELECT ReceitaID FROM Receitas WHERE NomeReceita=? AND UsuarioID=?)', [NomeReceita, UserID]);
+        db.run('DELETE FROM IngredientesReceitas WHERE ReceitaID=(SELECT ReceitaID FROM Receitas WHERE NomeReceita=? AND email=?)', [NomeReceita, email]);
     });
 }
 
-export async function getIngredientesReceita(NomeReceita, UserID) {
+export async function getIngredientesReceita(NomeReceita, email) {
     return new Promise((resolve, reject) => {
-      openDb.all("SELECT * FROM Ingrediente WHERE ReceitaID=(SELECT ReceitaID FROM Receitas WHERE NomeReceita=? AND UsuarioID=?)", [NomeReceita, UserID], (err, rows) => {
+      openDb.all("SELECT * FROM Ingrediente WHERE ReceitaID=(SELECT ReceitaID FROM Receitas WHERE NomeReceita=? AND email=?)", [NomeReceita, email], (err, rows) => {
         if (err) {
           console.error("Erro ao executar a query:", err.message);
           reject(err);
@@ -157,12 +157,12 @@ export async function getIngredientesReceita(NomeReceita, UserID) {
     });
   }
 
-export async function getInstrucaoReceita(NomeReceita, UserID) {
+export async function getInstrucaoReceita(NomeReceita, email) {
 try {
     const rows = await new Promise((resolve, reject) => {
     openDb.all(
-        "SELECT Instrucao FROM InstrucaoReceitas WHERE ReceitaID = (SELECT ReceitaID FROM Receitas WHERE NomeReceita = ? AND UsuarioID = ?)",
-        [NomeReceita, UserID],
+        "SELECT Instrucao FROM InstrucaoReceitas WHERE ReceitaID = (SELECT ReceitaID FROM Receitas WHERE NomeReceita = ? AND email = ?)",
+        [NomeReceita, email],
         (err, rows) => {
         if (err) {
             console.error("Erro ao executar a consulta:", err.message);
@@ -189,33 +189,33 @@ try {
 
 export async function insertItem(Item){
     openDb().then(db => {
-        db.run('INSERT INTO Lista (UsuarioID, Item, Quantidade, UnidadeMedida, Prioridade) VALUES (?, ?, ?, ?, ?)',[Item.UserID, Item.Item, Item.Quantidade, Item.UnidadeMedida, Item.Prioridade])
+        db.run('INSERT INTO Lista (email, Item, Quantidade, UnidadeMedida, Prioridade) VALUES (?, ?, ?, ?, ?)',[Item.email, Item.Item, Item.Quantidade, Item.UnidadeMedida, Item.Prioridade])
     })
 } 
 
 
-export async function deleteItem(UserID, Item){
+export async function deleteItem(email, Item){
     openDb().then(db => {
-        db.run('DELETE FROM InstrucaoReceitas WHERE UsuarioID=? AND Item=?', [UserID,Item]);
+        db.run('DELETE FROM InstrucaoReceitas WHERE email=? AND Item=?', [email,Item]);
     })
 } 
 
-export async function updateItem(UserID,Item, newItem) {
+export async function updateItem(email,Item, newItem) {
     openDb().then(db => {
-        db.run('UPDATE Lista SET UsuarioID=?, Item=?, Quantidade=?, UnidadeMedida=?, Prioridade=? WHERE UsuarioID=? AND Item=?', [UserID, newItem.Item, newItem.Quantidade, newItem.UnidadeMedida, newItem.Prioridade, UserID, Item]);
+        db.run('UPDATE Lista SET email=?, Item=?, Quantidade=?, UnidadeMedida=?, Prioridade=? WHERE email=? AND Item=?', [email, newItem.Item, newItem.Quantidade, newItem.UnidadeMedida, newItem.Prioridade, email, Item]);
     });
 }
 
-export async function getItens(UserID) {
+export async function getItens(email) {
     return new Promise((resolve, reject) => {
-      openDb.all("SELECT * FROM Lista WHERE UsuarioID = ?", [UserID], (err, rows) => {
+      openDb.all("SELECT * FROM Lista WHERE email = ?", [email], (err, rows) => {
         if (err) {
           console.error("Erro ao executar a query:", err.message);
           reject(err);
           return;
         }
         const lista = rows.map(row => ({
-          UsuarioID: parseInt(row.UsuarioID),
+          email: parseInt(row.email),
           Item: row.Item,
           Quantidade: parseInt(row.Quantidade),
           UnidadeMedida: row.UnidadeMedida,
