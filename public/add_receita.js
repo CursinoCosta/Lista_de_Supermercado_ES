@@ -100,7 +100,7 @@ selectCategory.addEventListener("change", function () {
 
 let btn_final_save = document.querySelector("#btn_final_save");
 
-btn_final_save.addEventListener("click", function (e) {
+btn_final_save.addEventListener("click", async function (e) {
     e.preventDefault();
 
     if (hold_name.innerHTML.trim() === "" || div_shows.innerHTML.trim() === "" || modo_preparo.innerHTML.trim() === "") {
@@ -108,6 +108,38 @@ btn_final_save.addEventListener("click", function (e) {
         return;
     }
 
-    alert("Receita salva com sucesso! ");
+    const nomeTexto = hold_name.textContent;
+    const nomeMatch = nomeTexto.match(/^(.+?)\s\(/);
+    const categoriaMatch = nomeTexto.match(/\(([^)]+)\)/);
 
+    const nome = nomeMatch ? nomeMatch[1] : '';
+    const categoria = categoriaMatch ? categoriaMatch[1] : '';
+
+    const ingredientes = [];
+    document.querySelectorAll("#list_ingred #item").forEach(li => {
+        ingredientes.push(li.textContent);  
+    });
+
+    const modoPreparo = modo_preparo.innerText;
+
+    try {
+        const response = await fetch('http://localhost:3000/receita', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nome,
+                categoria,
+                ingredientes,
+                modoPreparo,
+            }),
+        });
+
+        const result = await response.json();
+        alert(result.mensagem);
+    } catch (error) {
+        console.error(error);
+        alert("Erro ao salvar receita.");
+    }
 });

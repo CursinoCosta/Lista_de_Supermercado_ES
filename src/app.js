@@ -86,4 +86,52 @@ app.post('/login', async (req, res) => {
     }
   });
 
+  app.post('/receita', async (req, res) => {
+    try {
+        const dados = req.body;
+
+        const receitaObj = {
+            ReceitaID: null,
+            UsuarioID: dados.usuarioID || 1,
+            NomeReceita: dados.nome,
+            Categoria: dados.categoria,
+            Favorito: 0
+        };
+        await dbFunctions.insertReceita(receitaObj);
+
+        const db = await openDb();
+        const ultimaReceita = await db.get('SELECT MAX(ReceitaID) as id FROM Receitas');
+        const receitaID = ultimaReceita.id;
+
+        
+        for (const item of dados.ingredientes) {
+            const partes = item.split(' - ');
+            const ingrediente = partes[0];
+            const quantidadeUnidade = partes[1]?.split(' ') || [];
+
+            const ingredienteObj = {
+                ReceitaID: receitaID,
+                Ingrediente: ingrediente,
+                Quantidade: parseFloat(quantidadeUnidade[0]) || 1,
+                UnidadeMedida: quantidadeUnidade.slice(1).join(' ') || ''
+            };
+            await dbFunctions.insertIngrediente(ingredienteObj);
+        }
+
+        const instrucaoObj = {
+            ReceitaID: receitaID,
+            Instrucao: dados.modoPreparo
+        };
+        await dbFunctions.insertInstrucao(instrucaoObj);
+
+        res.status(200).json({ mensagem: "Receita salva com sucesso!" });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ mensagem: "Erro ao salvar receita." });
+    }
+});
+
+
+
 app.listen(3000, ()=>console.log("rodando"))
