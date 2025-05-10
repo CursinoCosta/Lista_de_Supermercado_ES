@@ -133,6 +133,7 @@ btn_final_save.addEventListener("click", async function (e) {
                 categoria,
                 ingredientes,
                 modoPreparo,
+                email: localStorage.getItem('email')
             }),
         });
 

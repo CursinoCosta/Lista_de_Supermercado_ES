@@ -92,7 +92,7 @@ app.post('/login', async (req, res) => {
 
         const receitaObj = {
             ReceitaID: null,
-            UsuarioID: dados.usuarioID || 1,
+            email: dados.email,
             NomeReceita: dados.nome,
             Categoria: dados.categoria,
             Favorito: 0

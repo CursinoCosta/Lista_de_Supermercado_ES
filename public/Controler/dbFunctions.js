@@ -4,7 +4,7 @@ export async function createTable(){
     openDb().then(db => {
         db.exec('CREATE TABLE IF NOT EXISTS Usuarios (UsuarioID INTEGER, email TEXT PRIMARY KEY, nomeCompleto TEXT, nomeUsuario TEXT, senha TEXT)')
         
-        db.exec('CREATE TABLE IF NOT EXISTS Receitas (ReceitaID INTEGER, email TEXT PRIMARY KEY,	NomeReceita TEXT PRIMARY KEY, Categoria TEXT, Favorito BINARY, FOREIGN KEY (email) REFERENCES Usuario(email) )')
+        db.exec(`CREATE TABLE IF NOT EXISTS Receitas (ReceitaID INTEGER PRIMARY KEY AUTOINCREMENT,email TEXT,NomeReceita TEXT,Categoria TEXT,Favorito BINARY,FOREIGN KEY (email) REFERENCES Usuarios(email))`)
         db.exec('CREATE TABLE IF NOT EXISTS IngredientesReceitas (ReceitaID INTEGER PRIMARY KEY, Ingrediente TEXT PRIMARY KEY, Quantidade INTEGER, UnidadeMedida TEXT, FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         db.exec('CREATE TABLE IF NOT EXISTS InstrucaoReceitas (ReceitaID INTEGER PRIMARY KEY, Instrucao TEXT, FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         
