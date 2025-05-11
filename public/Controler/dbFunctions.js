@@ -1,16 +1,24 @@
 import { openDb } from "./configDb.js";
 
-/*export async function dropReceitasTable() {
+export async function dropReceitasTable() {
     const db = await openDb();
     await db.exec('DROP TABLE IF EXISTS Receitas');
-}*/
+}
+export async function dropIngredientesTable() {
+    const db = await openDb();
+    await db.exec('DROP TABLE IF EXISTS IngredientesReceitas');
+}
+export async function dropInstrucaoReceitasTable() {
+    const db = await openDb();
+    await db.exec('DROP TABLE IF EXISTS InstrucaoReceitas');
+}
 
 export async function createTable(){
     openDb().then(db => {
         db.exec('CREATE TABLE IF NOT EXISTS Usuarios (UsuarioID INTEGER, email TEXT PRIMARY KEY, nomeCompleto TEXT, nomeUsuario TEXT, senha TEXT)')
         
         db.exec(`CREATE TABLE IF NOT EXISTS Receitas (ReceitaID INTEGER PRIMARY KEY AUTOINCREMENT,email TEXT,NomeReceita TEXT,Categoria TEXT,Favorito BINARY,FOREIGN KEY (email) REFERENCES Usuarios(email))`)
-        db.exec('CREATE TABLE IF NOT EXISTS IngredientesReceitas (ReceitaID INTEGER PRIMARY KEY, Ingrediente TEXT PRIMARY KEY, Quantidade INTEGER, UnidadeMedida TEXT, FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
+        db.exec('CREATE TABLE IF NOT EXISTS IngredientesReceitas (ReceitaID INTEGER, Ingrediente TEXT, Quantidade INTEGER, UnidadeMedida TEXT,PRIMARY KEY (ReceitaID, Ingrediente), FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         db.exec('CREATE TABLE IF NOT EXISTS InstrucaoReceitas (ReceitaID INTEGER PRIMARY KEY, Instrucao TEXT, FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         
         db.exec('CREATE TABLE IF NOT EXISTS Lista (email INTEGER PRIMARY KEY, Item TEXT PRIMARY KEY, Quantidade INTEGER, UnidadeMedida TEXT, Prioridade INTEGER,FOREIGN KEY (email) REFERENCES Usuarios(email) )')
@@ -113,11 +121,13 @@ export async function deleteInstrucao(Receitaid) {
 
 // Receitas DB
 
-export async function insertReceita(Receita){
-    openDb().then(db => {
-        db.run('INSERT INTO Receitas (ReceitaID, email, NomeReceita, Categoria, Favorito) VALUES (?, ?, ?, ?, ?)',[Receita.ReceitaID, Receita.email, Receita.NomeReceita, Receita.Categoria, Receita.Favorito])
-    })
-} 
+
+export async function insertReceita(receita) {
+    const db = await openDb();
+    const result = await db.run(
+        'INSERT INTO Receitas (email, NomeReceita, Categoria, Favorito) VALUES (?, ?, ?, ?)',[receita.email, receita.NomeReceita, receita.Categoria, receita.Favorito]);
+    return result.lastID; 
+}
 
 export async function updateReceita(NomeReceita, email, newReceita) {
     openDb().then(db => {

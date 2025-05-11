@@ -7,10 +7,11 @@ import path from 'path';
 import { fileURLToPath } from 'url'; // Importa utilitário do Node.js
 import { dirname } from 'path';
 
-//import { dropReceitasTable } from '../public/Controler/dbFunctions.js';
- 
-const app = express();
+import { dropReceitasTable } from '../public/Controler/dbFunctions.js';
+import { dropIngredientesTable } from '../public/Controler/dbFunctions.js';
+import { dropInstrucaoReceitasTable } from '../public/Controler/dbFunctions.js';
 
+const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -20,11 +21,16 @@ app.use(express.json());
 app.use(cors());            
 app.use(cors({ origin: 'http://127.0.0.1:5500' }));
 
-// APAGA A TABELA (PROVISORIAMENTE)
+// APAGA TABELAs (PROVISORIAMENTE)
 /*dropReceitasTable().then(() => {
     dbFunctions.createTable();
+});
+dropIngredientesTable().then(() => {
+    dbFunctions.createTable();
+});
+dropInstrucaoReceitasTable().then(() => {
+    dbFunctions.createTable();
 });*/
-
 
 dbFunctions.createTable();
 
@@ -104,11 +110,7 @@ app.post('/login', async (req, res) => {
             Categoria: dados.categoria,
             Favorito: 0
         };
-        await dbFunctions.insertReceita(receitaObj);
-
-        const db = await openDb();
-        const ultimaReceita = await db.get('SELECT MAX(ReceitaID) as id FROM Receitas');
-        const receitaID = ultimaReceita.id;
+        const receitaID = await dbFunctions.insertReceita(receitaObj);
 
         
         for (const item of dados.ingredientes) {
