@@ -6,6 +6,8 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url'; // Importa utilitário do Node.js
 import { dirname } from 'path';
+
+//import { dropReceitasTable } from '../public/Controler/dbFunctions.js';
  
 const app = express();
 
@@ -17,6 +19,11 @@ app.use(express.json());
 
 app.use(cors());            
 app.use(cors({ origin: 'http://127.0.0.1:5500' }));
+
+// APAGA A TABELA (PROVISORIAMENTE)
+/*dropReceitasTable().then(() => {
+    dbFunctions.createTable();
+});*/
 
 
 dbFunctions.createTable();
@@ -86,7 +93,7 @@ app.post('/login', async (req, res) => {
     }
   });
 
-  app.post('/receita', async (req, res) => {
+  app.post('/add_receita', async (req, res) => {
     try {
         const dados = req.body;
 
@@ -131,7 +138,5 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ mensagem: "Erro ao salvar receita." });
     }
 });
-
-
 
 app.listen(3000, ()=>console.log("rodando"))

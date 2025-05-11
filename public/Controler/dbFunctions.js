@@ -1,5 +1,10 @@
 import { openDb } from "./configDb.js";
 
+/*export async function dropReceitasTable() {
+    const db = await openDb();
+    await db.exec('DROP TABLE IF EXISTS Receitas');
+}*/
+
 export async function createTable(){
     openDb().then(db => {
         db.exec('CREATE TABLE IF NOT EXISTS Usuarios (UsuarioID INTEGER, email TEXT PRIMARY KEY, nomeCompleto TEXT, nomeUsuario TEXT, senha TEXT)')
@@ -29,7 +34,7 @@ export async function updateUsuario(email) {
 
 export async function deleteUsuario(email) {
     openDb().then(db => {
-        db.run('DELETE FROM Usuarios WHERE emaisl=?', [email]);
+        db.run('DELETE FROM Usuarios WHERE email=?', [email]);
     });
 }
 

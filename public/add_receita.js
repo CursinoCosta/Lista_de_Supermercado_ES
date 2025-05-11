@@ -123,7 +123,7 @@ btn_final_save.addEventListener("click", async function (e) {
     const modoPreparo = modo_preparo.innerText;
 
     try {
-        const response = await fetch('http://localhost:3000/receita', {
+        const response = await fetch('http://localhost:3000/add_receita', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
