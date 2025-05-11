@@ -22,15 +22,15 @@ app.use(cors());
 app.use(cors({ origin: 'http://127.0.0.1:5500' }));
 
 // APAGA TABELAs (PROVISORIAMENTE)
-/*dropReceitasTable().then(() => {
-    dbFunctions.createTable();
-});
-dropIngredientesTable().then(() => {
-    dbFunctions.createTable();
-});
-dropInstrucaoReceitasTable().then(() => {
-    dbFunctions.createTable();
-});*/
+// dropReceitasTable().then(() => {
+//     dbFunctions.createTable();
+// });
+// dropIngredientesTable().then(() => {
+//     dbFunctions.createTable();
+// });
+// dropInstrucaoReceitasTable().then(() => {
+//     dbFunctions.createTable();
+// });
 
 dbFunctions.createTable();
 
