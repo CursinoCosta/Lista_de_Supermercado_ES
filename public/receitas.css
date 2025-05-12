@@ -73,7 +73,7 @@ select {
 }
 
 /* Cards que mostram as receitas */
-.cards {
+.area_recipes {
     display: flex;
     /* justify-content: space-between; */
     width: 90%;
@@ -82,7 +82,7 @@ select {
     margin-left: 60px;
 }
 
-.card {
+.recipe-card {
     width: 200px;
     height: 120px;
     background-color: rgb(221,114,77, 0.4);

@@ -21,8 +21,8 @@ function inicializarPerfil() {
 }
 
 function configurarEdicaoDadosPerfil() {
-  // const senhaArmazenada = localStorage.getItem("senha");
-  const senhaArmazenada = 123
+  const senhaArmazenada = localStorage.getItem("senha");
+  // const senhaArmazenada = 123
 
   // Seleciona apenas os botões de editar que tenham um span com classe 'info-value' (evita o botão de mudar senha)
   const editarBtns = document.querySelectorAll(".info-item .editar-btn");
@@ -88,8 +88,8 @@ function configurarMudancaSenha() {
 
   mudarSenhaBtn.addEventListener("click", () => {
     const parent = mudarSenhaBtn.parentElement;
-    //const senhaArmazenada = localStorage.getItem("senha");
-    const senhaArmazenada = 123
+    const senhaArmazenada = localStorage.getItem("senha");
+    // const senhaArmazenada = 123
 
     if (mudarSenhaBtn.textContent === "Salvar") {
       const senhaAntigaInput = parent.querySelector(".senha-antiga-input");

@@ -42,6 +42,7 @@ function login(form) {
         localStorage.setItem('nomeUsuario', data.usuario.nomeUsuario);     // username
         localStorage.setItem('nomeCompleto', data.usuario.nomeCompleto);   // nome completo
         localStorage.setItem('email', data.usuario.email);                 // e-mail
+        localStorage.setItem('senha', data.usuario.senha);
 
         window.location.href = "perfil.html";
     })
@@ -98,6 +99,7 @@ function cadastro(form) {
         localStorage.setItem('nomeUsuario', username_signup.value); // Guarda o nome de usuário
         localStorage.setItem('nomeCompleto', name_signup.value); // Guarda o nome completo
         localStorage.setItem('email', email_signup.value); // Guarda o e-mail
+        localStorage.setItem('senha', data.usuario.senha);
         window.location.href = "perfil.html"; // ou login.html, dependendo do fluxo
     })
     .catch(err => {
