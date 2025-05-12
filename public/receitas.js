@@ -81,7 +81,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function exibirModalDetalhes(nomeReceita, detalhes) {
-        // ... (sua função exibirModalDetalhes) ...
+        const modal = document.createElement('div');
+        modal.classList.add('recipe-modal');
+
+        const modalContent = document.createElement('div');
+        modalContent.classList.add('modal-content');
+
+        const closeButton = document.createElement('span');
+        closeButton.classList.add('close-button');
+        closeButton.innerHTML = '&times;';
+        closeButton.addEventListener('click', () => {
+            document.body.removeChild(modal);
+        });
+
+        const receitaNomeTitulo = document.createElement('h2');
+        receitaNomeTitulo.textContent = nomeReceita;
+
+        const ingredientesTitulo = document.createElement('h4');
+        ingredientesTitulo.textContent = 'Ingredientes:';
+
+        const listaIngredientes = document.createElement('ul');
+        detalhes.ingredientes.forEach(ingrediente => {
+            const itemLista = document.createElement('li');
+            itemLista.textContent = `${ingrediente.Ingrediente} - ${ingrediente.Quantidade} ${ingrediente.UnidadeMedida}`;
+            listaIngredientes.appendChild(itemLista);
+        });
+
+        const modoPreparoTitulo = document.createElement('h4');
+        modoPreparoTitulo.textContent = 'Modo de Preparo:';
+
+        const modoPreparoParagrafo = document.createElement('p');
+        modoPreparoParagrafo.textContent = detalhes.instrucao;
+
+        modalContent.appendChild(closeButton);
+        modalContent.appendChild(receitaNomeTitulo);
+        modalContent.appendChild(ingredientesTitulo);
+        modalContent.appendChild(listaIngredientes);
+        modalContent.appendChild(modoPreparoTitulo);
+        modalContent.appendChild(modoPreparoParagrafo);
+
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+
+        // Fechar o modal ao clicar fora dele
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                document.body.removeChild(modal);
+            }
+        });
     }
 
     // Carregar todas as receitas inicialmente
