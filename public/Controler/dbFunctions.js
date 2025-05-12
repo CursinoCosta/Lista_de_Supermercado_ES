@@ -21,7 +21,7 @@ export async function createTable(){
         db.exec('CREATE TABLE IF NOT EXISTS IngredientesReceitas (ReceitaID INTEGER, Ingrediente TEXT, Quantidade INTEGER, UnidadeMedida TEXT,PRIMARY KEY (ReceitaID, Ingrediente), FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         db.exec('CREATE TABLE IF NOT EXISTS InstrucaoReceitas (ReceitaID INTEGER PRIMARY KEY, Instrucao TEXT, FOREIGN KEY (ReceitaID) REFERENCES Receitas(ReceitaID) )')
         
-        db.exec('CREATE TABLE IF NOT EXISTS Lista (email INTEGER PRIMARY KEY, Item TEXT PRIMARY KEY, Quantidade INTEGER, UnidadeMedida TEXT, Prioridade INTEGER,FOREIGN KEY (email) REFERENCES Usuarios(email) )')
+        db.exec('CREATE TABLE IF NOT EXISTS Lista (email INTEGER, Item TEXT , Quantidade INTEGER, UnidadeMedida TEXT, Prioridade INTEGER,FOREIGN KEY (email) REFERENCES Usuarios(email) )')
 
     })
 }
@@ -222,21 +222,23 @@ export async function updateItem(email,Item, newItem) {
 }
 
 export async function getItens(email) {
-    return new Promise((resolve, reject) => {
-      openDb.all("SELECT * FROM Lista WHERE email = ?", [email], (err, rows) => {
-        if (err) {
-          console.error("Erro ao executar a query:", err.message);
-          reject(err);
-          return;
-        }
-        const lista = rows.map(row => ({
-          email: parseInt(row.email),
-          Item: row.Item,
-          Quantidade: parseInt(row.Quantidade),
-          UnidadeMedida: row.UnidadeMedida,
-          Prioridade: parseInt(row.Prioridade)
-        }));
-        resolve(lista);
-      });
-    });
+  console.log("Abacaxi");
+
+  try {
+    const db = await openDb();
+    
+    const rows = await db.all("SELECT * FROM Lista WHERE email = ?", [email]);
+    
+    const listaRetorno = rows.map(row => ({
+      email: row.email,
+      Item: row.Item,
+      Quantidade: parseInt(row.Quantidade),
+      UnidadeMedida: row.UnidadeMedida,
+      Prioridade: parseInt(row.Prioridade)
+    }));
+    
+    return listaRetorno;
+  } catch (error) {
+    throw error;
   }
+}

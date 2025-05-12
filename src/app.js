@@ -141,4 +141,38 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.post('/add_item_lista', async (req, res) => {
+    console.log("a post back")
+    try {
+        const dados = req.body;
+
+        const listaObj = {
+            email: dados.email,
+            Item: dados.Item,
+            Quantidade: dados.Quantidade,
+            UnidadeMedida: dados.UnidadeMedida,
+            Prioridade: dados.Prioridade
+        };
+        dbFunctions.insertItem(listaObj);
+        //console.log("pos insert db")
+
+        res.status(200).json({ mensagem: "Item salva com sucesso!" });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ mensagem: "Erro ao salvar receita." });
+    }
+});
+
+
+app.get('/lista', async (req, res) => {
+  const email = req.query.parametro;
+  console.log('m')
+  const listaRetorno = await dbFunctions.getItens(email);
+  console.log("dentro de app : ", listaRetorno);
+  console.log("Tipo de listaRetorno no apa:", typeof listaRetorno);
+  res.json(listaRetorno);
+});
+
+
 app.listen(3000, ()=>console.log("rodando"))
