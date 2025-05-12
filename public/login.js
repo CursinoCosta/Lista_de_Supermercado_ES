@@ -99,7 +99,7 @@ function cadastro(form) {
         localStorage.setItem('nomeUsuario', username_signup.value); // Guarda o nome de usuário
         localStorage.setItem('nomeCompleto', name_signup.value); // Guarda o nome completo
         localStorage.setItem('email', email_signup.value); // Guarda o e-mail
-        localStorage.setItem('senha', data.usuario.senha);
+        localStorage.setItem('senha', password_signup.value);
         window.location.href = "perfil.html"; // ou login.html, dependendo do fluxo
     })
     .catch(err => {

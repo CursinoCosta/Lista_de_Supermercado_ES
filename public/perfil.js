@@ -31,7 +31,7 @@ function configurarEdicaoDadosPerfil() {
     const valueSpan = btn.parentElement.querySelector(".info-value");
     if (!valueSpan) return; // Ignora se não for um campo de edição de dado (ex: mudar senha)
 
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", async () => {
       const parent = btn.parentElement;
 
       if (btn.textContent === "Salvar") {
@@ -45,13 +45,22 @@ function configurarEdicaoDadosPerfil() {
           return;
         }
 
-        // Atualiza o valor no localStorage
+        let emailUsuario = localStorage.getItem("email")
+        let nomeCompleto = localStorage.getItem("nomeCompleto")
+        let nomeUsuario = localStorage.getItem("nomeUsuario")
+        const senhaUsuario = localStorage.getItem("senha")
+
+
+        // Atualiza o valor no localStorage e variaveis locais
         if (valueSpan.id === "nomeCompleto") {
           localStorage.setItem("nomeCompleto", newValue);
+          nomeCompleto = newValue;
         } else if (valueSpan.id === "nomeUsuario") {
           localStorage.setItem("nomeUsuario", newValue);
+          nomeUsuario = newValue;
         } else if (valueSpan.id === "emailUsuario") {
           localStorage.setItem("email", newValue);
+          emailUsuario = newValue;
         }
 
         // Atualiza a interface
@@ -60,6 +69,37 @@ function configurarEdicaoDadosPerfil() {
         input.remove();
         senhaInput.remove();
         btn.textContent = "Editar";
+
+        // Atualizar DB
+        const dados = {
+            email: emailUsuario,
+            nomeCompleto: nomeCompleto,
+            nomeUsuario: nomeUsuario,
+            senha: senhaUsuario
+        };
+
+        fetch('http://localhost:3000/perfil/:alterdados', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        })
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(data => {
+                    throw new Error(data.mensagem || 'Erro ao cadastrar');
+                });
+            }
+            return res.json();
+        })
+        .then(data => {
+            alert(data.mensagem);
+        })
+        .catch(err => {
+            alert("Erro: " + err.message);
+        });
+
       } else {
         // Modo edição
         const currentValue = valueSpan.textContent;
@@ -118,6 +158,41 @@ function configurarMudancaSenha() {
       // Atualiza senha
       localStorage.setItem("senha", novaSenha);
       alert("Senha alterada com sucesso!");
+
+      // Atualizar DB
+
+        const emailUsuario = localStorage.getItem("email")
+        const nomeCompleto = localStorage.getItem("nomeCompleto")
+        const nomeUsuario = localStorage.getItem("nomeUsuario")
+
+        const dados = {
+            email: emailUsuario,
+            nomeCompleto: nomeCompleto,
+            nomeUsuario: nomeUsuario,
+            senha: novaSenha
+        };
+
+        fetch('http://localhost:3000/perfil/:altersenha', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        })
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(data => {
+                    throw new Error(data.mensagem || 'Erro ao cadastrar');
+                });
+            }
+            return res.json();
+        })
+        .then(data => {
+            alert(data.mensagem);
+        })
+        .catch(err => {
+            alert("Erro: " + err.message);
+        });
 
       // Limpa campos
       senhaAntigaInput.remove();

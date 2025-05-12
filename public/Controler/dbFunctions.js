@@ -34,9 +34,9 @@ export async function insertUsuario(userData){
     })
 }
 
-export async function updateUsuario(email) {
+export async function updateUsuario(userData,email) {
     openDb().then(db => {
-        db.run('UPDATE Usuarios SET email=?, nomeCompleto=?, nomeUsuario=?, senha=? WHERE email=?', [User.email, User.nomeCompleto, User.nomeUsuario, User.senha, email]);
+        db.run('UPDATE Usuarios SET email=?, nomeCompleto=?, nomeUsuario=?, senha=? WHERE email=?', [userData.email, userData.nomeCompleto, userData.nomeUsuario, userData.senha, email]);
     });
 }
 

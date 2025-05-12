@@ -87,7 +87,7 @@ app.post('/login', async (req, res) => {
       if (user) {
         return res.json({
           mensagem: 'Login bem-sucedido!',
-          usuario: { id: user.UsuarioID, nomeUsuario: user.nomeUsuario, nomeCompleto: user.nomeCompleto, email: user.email }
+          usuario: { id: user.UsuarioID, nomeUsuario: user.nomeUsuario, nomeCompleto: user.nomeCompleto, email: user.email, senha : user.senha }
         });
       } else {
         return res.status(401).json({ mensagem: 'Usuário ou senha incorretos.' });
@@ -201,4 +201,41 @@ app.get('/receita/:receitaId', async (req, res) => {
     }
 });
 
+
+app.post('/perfil/:alterdados', (req, res) => {
+    const dados = req.body;
+
+    if (!dados.email || !dados.nomeCompleto || !dados.nomeUsuario || !dados.senha) {
+        return res.status(400).json({ mensagem: "Erro. Preencha todos os campos." });
+    }
+
+    dbFunctions.updateUsuario(dados,dados.email)
+        .then(() => {
+            res.status(200).json({ mensagem: "Perfil alterado com sucesso!" });
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).json({ mensagem: "Erro ao alterar perfil do usuário." });
+        });
+});
+
+
+app.post('/perfil/:altersenha', (req, res) => {
+    const dados = req.body;
+
+    if (!dados.email || !dados.nomeCompleto || !dados.nomeUsuario || !dados.senha) {
+        return res.status(400).json({ mensagem: "Erro. Preencha todos os campos." });
+    }
+
+    dbFunctions.updateUsuario(dados,dados.email)
+        .then(() => {
+            res.status(200).json({ mensagem: "Senha alterado com sucesso!" });
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).json({ mensagem: "Erro ao alterar senha do usuário." });
+        });
+});
+
 app.listen(3000, ()=>console.log("rodando"))
+
