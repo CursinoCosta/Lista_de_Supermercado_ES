@@ -1,6 +1,4 @@
-
-
-let item = document.querySelector("#item");
+let produto = document.querySelector("#item");
 let quantity = document.querySelector("#quantity");
 let unit = document.querySelector("#unit");
 let urgency_high = document.querySelector("#high");
@@ -19,6 +17,9 @@ let _form = document.querySelector('form')
 
 function print_list() {
     let to_add = '';
+    div_high.innerHTML = '';
+    div_medium.innerHTML = '';
+    div_low.innerHTML = '';
 
     console.log("entrei print_list  ");
     const email = localStorage.getItem('email');
@@ -38,21 +39,18 @@ function print_list() {
             // //for loop que itera sobre cada linha
             console.log(listaRetorno)
             for(const i of listaRetorno){       
-                let item_name = i.item;// atribui o valor da célula da coluna "Item" da tabela
+                let item_name = i.Item;// atribui o valor da célula da coluna "Item" da tabela
                 let qntd = i.Quantidade; // atribui o valor da célula da coluna "Quantidade" da tabela
                 let unid = i.UnidadeMedida; // atribui o valor da célula da coluna "UnidadeMedida" da tabela
                 let prio = i.Prioridade; // atribui o valor da célula da coluna "Prioridade" da tabela
                 //console.log("aaaa",item_name,qntd,unid,prio)
-                let item = (item_name.value).charAt(0).toUpperCase() + (item_name.value).slice(1)
+                let itemFormatado = item_name.charAt(0).toUpperCase() + item_name.slice(1)
 
-                    if(quantity.value != "") {
-                        qntd = quantity.value;
-                    }
-                    if(unit.value != "select") {
+                    if(unid != "select") {
                         if(qntd >= 2) {
-                            unid = " " + unit.value + "s";
+                            unid = " " + unid + "s";
                         } else {
-                            unid = " " + unit.value;
+                            unid = " " + unid;
                         }
                     }
                     else {unid = "";}
@@ -60,21 +58,21 @@ function print_list() {
                 if(prio == 0) {
                         to_add = `
                         <div>
-                                <li class="item_list">${item} (${qntd}${unid}) <i id="important_high" class="fa-solid fa-circle-exclamation"></i> <button id="delete_btn"><i class="fa-regular fa-trash-can"></i></button></li>
+                                <li class="item_list">${itemFormatado} (${qntd}${unid}) <i id="important_high" class="fa-solid fa-circle-exclamation"></i> <button id="delete_btn"><i class="fa-regular fa-trash-can"></i></button></li>
                         </div>`;
 
                         div_high.innerHTML += to_add;
                     } else if(prio == 1) {
                         to_add = `
                             <div>
-                            <li class="item_list">${item} (${qntd}${unid}) <i id="important_medium" class="fa-solid fa-circle-exclamation"></i> <button id="delete_btn"><i class="fa-regular fa-trash-can"></i></button></li>
+                            <li class="item_list">${itemFormatado} (${qntd}${unid}) <i id="important_medium" class="fa-solid fa-circle-exclamation"></i> <button id="delete_btn"><i class="fa-regular fa-trash-can"></i></button></li>
                             </div>`;
 
                         div_medium.innerHTML += to_add;
                     } else {
                         to_add = `
                         <div>
-                            <li class="item_list">${item} (${qntd}${unid}) <i id="important_low" class="fa-solid fa-circle-exclamation"></i> <button id="delete_btn"><i class="fa-regular fa-trash-can"></i></button></li>
+                            <li class="item_list">${itemFormatado} (${qntd}${unid}) <i id="important_low" class="fa-solid fa-circle-exclamation"></i> <button id="delete_btn"><i class="fa-regular fa-trash-can"></i></button></li>
                         </div>`;
 
                         div_low.innerHTML += to_add;
