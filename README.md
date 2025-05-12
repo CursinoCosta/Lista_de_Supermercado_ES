@@ -43,7 +43,7 @@ O BackEnd será feito em JavaScript e os bancos de dados serão trabalhados usan
 * Implementar a funcionalidade onde o usuário deve ser capaz de sinalizar que uma receita registrada no sistema é classificada como favorita.
 * Deve implementar também a possibilidade de remover uma receita dos favoritos.
 
-## História #11:
+## História #10:
   * Implementar o atributo "categoria" para receitas no banco de dados.
   * Adicionar campo de categoria ao cadastrar uma receita (ex.: receita do tipo saudável, favorita, de festa, natal, etc).
   * Criar interface para escolher a categoria desejada e exibir apenas as receitas filtradas na tela.
