@@ -55,67 +55,48 @@ header img:hover {
     color: #ede5db;
 }
 
-#top {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-}
-
 h1 {
     margin-top: 30px;
     margin-left: 60px;
+    margin-bottom: 30px;
     color: #dd724d;
-    width: 40%;
-}
-
-#name {
-    width: 40%;
-}
-
-#ingredients {
-    display: flex;
-    flex-wrap: wrap;
-    width: 90%;
-    align-items: center;
-    justify-content: space-between;
-    margin-left: 60px;
-}
-
-#register_recipe, #shows_ingred {
-    width: 45%;
-    height: 550px;
-}
-
-#register_ingr, #register_steps {
-    height: 36%;
-    overflow: auto;
-}
-
-input {
-    height: 35px;
-    background-color: rgba(194,189,184,.35);
-    border-radius: 6px;
-    border-color: rgba(194,189,184,.35);
-    /* margin-right: 10px; */
-}
-
-.add_ingr, #recipe_name {
-    width: 220px;
 }
 
 select {
-    margin-top: 5px;
-    height: 25px;
+    margin-left: 60px;
+    margin-bottom: 30px;
+    height: 30px;
     width: 220px;
-    background-color: rgba(194,189,184,.55);
-    opacity: 0.2;
+    background-color: rgba(194,189,184,.4);
+    border-radius: 6px;
+    border-color: rgba(194,189,184,.4);
 }
 
-button {
-    width: 95px;
-    height: 35px;
+/* Cards que mostram as receitas */
+.cards {
+    display: flex;
+    /* justify-content: space-between; */
+    width: 90%;
+    /* height: 200px; */
+    align-items: center;
+    margin-left: 60px;
+}
+
+.card {
+    width: 200px;
+    height: 120px;
+    background-color: rgb(221,114,77, 0.4);
+    margin-right: 20px;
+    border-radius: 8px;
+    flex-direction: column;         /* Stack items vertically */
+    justify-content: center;        /* Center vertically */
+    align-items: center;            /* Center horizontally */
+    text-align: center;             /* Optional: center text inside elements */
+}
+
+.btn_open {
+    width: 70px;
+    height: 27px;
     border-radius: 6px;
     background-color: #dd724d;
     opacity: 0.7;
@@ -123,61 +104,86 @@ button {
     color: white;
 }
 
-.container-salvar-receita {
-    margin-top: 30px;
-    text-align: center; 
-}
-
-#btn_final_save {
-    background-color: #dd724d; 
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 6px;
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
     cursor: pointer;
-    display: inline-block;
-    line-height: normal;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    min-width: 180px;
 }
 
-#btn_add, #btn_save {
-    margin-top: 10px;
+.close:hover {
+    color: #000;
 }
 
-#new_item {
+pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+/* Estilos para o modal de detalhes da receita */
+.recipe-modal {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Fundo semi-transparente */
+    justify-content: center; /* Centralizar horizontalmente */
+    align-items: center; /* Centralizar verticalmente */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Largura do modal */
+    max-width: 600px; /* Largura máxima */
+    border-radius: 5px;
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal-content h2, .modal-content h4, .modal-content p, .modal-content ul {
+    margin-bottom: 15px;
+    color: #333; /* Cor de texto padrão */
+}
+
+.modal-content h2 {
+    color: #dd724d; /* Cor do título da receita */
+    margin-top: 0;
+}
+
+.modal-content h4 {
+    color: #dd724d; /* Cor dos subtítulos */
+}
+
+.modal-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.modal-content li {
     margin-bottom: 5px;
-}
-
-#edit_ingr {
-    width: 40px;
-    border-radius: 50%;
-    margin-left: 15px;
-}
-
-#reg_rec {
-    margin-top: 10px;
-}
-
-#prepare {
-    width: 90%;
-    height: 180px;
-    background-color: rgba(194,189,184,.35);
-    border-radius: 6px;
-    border-color: rgba(194,189,184,.35);
-}
-
-#category {
-    margin-top: 10px;
-    height: 30px;
-    width: 220px;
-    background-color: rgba(194,189,184,.45);
-    opacity: 0.4;
-    border-radius: 6px;
 }

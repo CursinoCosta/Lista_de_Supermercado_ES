@@ -242,3 +242,36 @@ export async function getItens(email) {
     throw error;
   }
 }
+
+export async function getAllReceitas(email) {
+    try {
+        const db = await openDb();
+        const rows = await db.all("SELECT ReceitaID, NomeReceita, Categoria, Favorito FROM Receitas WHERE email = ?", [email]);
+        return rows;
+    } catch (error) {
+        console.error("Erro ao buscar todas as receitas:", error.message);
+        throw error;
+    }
+}
+
+export async function getIngredientesPorReceitaId(ReceitaID) {
+    const db = await openDb(); // Agora esperamos a Promise da conexão
+    try {
+        const rows = await db.all("SELECT Ingrediente, Quantidade, UnidadeMedida FROM IngredientesReceitas WHERE ReceitaID = ?", [ReceitaID]);
+        return rows;
+    } catch (error) {
+        console.error("Erro ao executar a query de ingredientes por ReceitaID:", error.message);
+        throw error;
+    }
+}
+
+export async function getInstrucaoPorReceitaId(ReceitaID) {
+    const db = await openDb(); // Agora esperamos a Promise da conexão
+    try {
+        const row = await db.get("SELECT Instrucao FROM InstrucaoReceitas WHERE ReceitaID = ?", [ReceitaID]);
+        return row ? row.Instrucao : null;
+    } catch (error) {
+        console.error("Erro ao executar a consulta de instrução por ReceitaID:", error.message);
+        throw error;
+    }
+}

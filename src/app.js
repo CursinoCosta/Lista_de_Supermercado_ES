@@ -174,5 +174,31 @@ app.get('/lista', async (req, res) => {
   res.json(listaRetorno);
 });
 
+app.get('/receitas/:email', async (req, res) => {
+  const { email } = req.params;
+  try {
+    const receitas = await dbFunctions.getAllReceitas(email);
+    res.json(receitas);
+  } catch (error) {
+    console.error("Erro ao listar as receitas:", error.message);
+    res.status(500).json({ error: 'Erro ao buscar as receitas' });
+  }
+});
+
+app.get('/receita/:receitaId', async (req, res) => {
+    const { receitaId } = req.params;
+    try {
+        const ingredientes = await dbFunctions.getIngredientesPorReceitaId(receitaId);
+        const instrucao = await dbFunctions.getInstrucaoPorReceitaId(receitaId);
+        const receitaDetalhes = {
+            ingredientes: ingredientes || [],
+            instrucao: instrucao || ''
+        };
+        res.json(receitaDetalhes);
+    } catch (error) {
+        console.error("Erro ao buscar detalhes da receita:", error.message);
+        res.status(500).json({ error: 'Erro ao buscar detalhes da receita' });
+    }
+});
 
 app.listen(3000, ()=>console.log("rodando"))

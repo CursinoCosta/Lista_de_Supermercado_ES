@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Receitas</title>
+    <title>Suas receitas</title>
 
-    <link rel="stylesheet" href="add_receita.css" type="text/css">
+    <link rel="stylesheet" href="receitas.css" type="text/css">
 
     <script src="https://kit.fontawesome.com/a2f3e645e9.js" crossorigin="anonymous"></script>
 </head>
@@ -20,6 +20,7 @@
                 <li id="item_navbar"><a href="receitas.html">Suas receitas</a></li>
                 <li id="item_navbar"><a href="add_receita.html">Adicione receitas</a></li>
                 <li id="item_navbar"><a href="perfil.html">Perfil</a></li>
+                <!-- <li id="item_navbar"><a href="#" onclick="verificarCadastro()">Perfil</a></li> -->
                 <li><button id="exit"><i id="icon" class="fa-solid fa-arrow-right-from-bracket fa-xl"></i></button></li>
             </ul>
         </nav>
@@ -27,83 +28,25 @@
 
     <hr color="#dd724d" width="95%">
 
-    <div id="top">
-        <h1>Registre aqui as suas receitas</h1>
-        <h2 id="name"></h2>
-    </div>
-    <div id="ingredients">
-        <div id="register_recipe">
-            <form id="input_ingred">
-                <input id="recipe_name" type="text" placeholder="Digite o nome da receita...">
-                <select id="category" name="category">
-                    <option value="" selected disabled hidden>Selecione a categoria da receita</option>
-                    <option value="café-da-manhã">Café da manhã</option>
-                    <option value="almoço">Almoço</option>
-                    <option value="jantar">Jantar</option>
-                    <option value="lanche">Lanche</option>
-                    <option value="sobremesa">Sobremesa</option>
-                    <option value="vegetariana">Vegetariana</option>
-                    <option value="vegana">Vegana</option>
-                    <option value="lowcarb">Low Carb</option>
-                    <option value="nova" id="add_category">➕ Adicionar nova categoria...</option>
-                </select>
-                <button id="btn_name">Salvar</button>
-                
-                <h2>Preencha os ingredientes necessários</h2>
-                <input class="add_ingr" id="ingr" type="text" placeholder="Digite o ingrediente...">
-                <input class="add_ingr" id="qntd" type="number" min="0" placeholder="Digite a quantidade necessária...">
-                <br>
-                <select id="unit">
-                            <option id="select" value="select" selected disabled hidden>Selecione a unidade de medida</option>
-                            <option value="unidade">unidade</option>
-                            <option value="pacote">pacote</option>
-                            <option value="grama">grama</option>
-                            <option value="quilograma">quilograma</option>
-                            <option value="mililitro">mililitro</option>
-                            <option value="litro">litro</option>
-                            <option value="xícara de chá">xícara de chá</option>
-                            <option value="colher de chá">colher de chá</option>
-                            <option value="colher de sopa">colher de sopa</option>
-                            <option value="pitada">pitada</option>
-                        </select>
-                    <br>
-                <button id="btn_add">Adicionar</button>
-            </form>
-            <br>
+    <h1>Veja aqui as receitas</h1>
+    <select class="categories">
+        <option value="" selected disabled hidden>Selecione a categoria da receita</option>
+        <option value="café-da-manhã">Café da manhã</option>
+        <option value="almoço">Almoço</option>
+        <option value="jantar">Jantar</option>
+        <option value="lanche">Lanche</option>
+        <option value="sobremesa">Sobremesa</option>
+        <option value="vegetariana">Vegetariana</option>
+        <option value="vegana">Vegana</option>
+        <option value="lowcarb">Low Carb</option>
+    </select>
 
-            <hr color="#edab94" width="90%">
-
-            <form id="reg_rec">
-                <h2>Registre o modo de preparo</h2>
-                <textarea id="prepare" type="text" placeholder="Digite o modo de preparo..."></textarea>
-                <!-- <input id="prepare" type="text" placeholder="Digite o modo de preparo..."> -->
-                <br>
-                <button id="btn_save">Salvar</button>
-            </form>
-        </div>
-
-
-        <div id="shows_ingred">
-            <h3>Ingredientes</h3>
-            <div id="register_ingr">
-                <div>
-                    <ul id="list_ingred"></ul>
-                </div>
-            </div>
-            <h3>Modo de preparo</h3>
-            <div id="register_steps">
-                <div>
-                    <div id="modo_preparo" style="white-space: pre-wrap;"></div>
-                </div>
-            </div>
-        </div>
+    <div class="area_recipes">
+	
     </div>
 
-    <div class="container-salvar-receita">
-        <button id="btn_final_save">Salvar Receita</button>
-    </div>
-    
-    <script src="add_receita.js"></script>
+
+    <script src="receitas.js"></script>
     <script src="public_functions.js"></script>
 </body>
 </html>

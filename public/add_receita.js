@@ -1,146 +1,119 @@
-let name_recipe = document.querySelector("#recipe_name");
-let btn_name = document.querySelector("#btn_name");
-let hold_name = document.querySelector("#name");
-let div_add = document.querySelector("#input_ingred");
-let input_ingred = document.querySelector("#ingr");
-let input_qntd = document.querySelector("#qntd");
-let input_unit = document.querySelector("#unit");
-let div_shows = document.querySelector("#list_ingred");
-let btn_add = document.querySelector("#btn_add");
-let btn_save = document.querySelector("#btn_save");
-let _form = document.querySelector('form');
-let prepare = document.querySelector("#prepare");
-let modo_preparo = document.querySelector("#modo_preparo");
-let txtarea = document.querySelector('textarea');
-let input_category = document.querySelector("#category");
-let selectCategory = document.querySelector("#category");
+document.addEventListener('DOMContentLoaded', () => {
+    const emailDoUsuario = localStorage.getItem('email');
+    const areaRecipesElement = document.querySelector('.area_recipes');
 
-function recipe_name(form) {
-    form.preventDefault();
+    if (emailDoUsuario && areaRecipesElement) {
+        fetch(`http://localhost:3000/receitas/${emailDoUsuario}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(receitas => {
+                if (receitas && receitas.length > 0) {
+                    receitas.forEach(receita => {
+                        const receitaDiv = document.createElement('div');
+                        receitaDiv.classList.add('recipe-card');
+                        receitaDiv.dataset.receitaId = receita.ReceitaID;
+                        receitaDiv.style.cursor = 'pointer';
 
-    if(name_recipe.value == "") {
-        alert("Erro! Você deve preencher o campo referente ao Nome da Receita.")
-        return;
+                        const nomeReceitaH3 = document.createElement('h3');
+                        nomeReceitaH3.textContent = receita.NomeReceita;
+
+                        const categoriaSpan = document.createElement('span');
+                        categoriaSpan.textContent = `Categoria: ${receita.Categoria}`;
+
+                        receitaDiv.appendChild(nomeReceitaH3);
+                        receitaDiv.appendChild(categoriaSpan);
+
+                        areaRecipesElement.appendChild(receitaDiv);
+
+                        receitaDiv.addEventListener('click', () => {
+                            exibirDetalhesReceita(receita.ReceitaID, receita.NomeReceita); // Passa o nome da receita
+                        });
+                    });
+                } else {
+                    const mensagemNenhumaReceita = document.createElement('p');
+                    mensagemNenhumaReceita.textContent = 'Nenhuma receita encontrada.';
+                    areaRecipesElement.appendChild(mensagemNenhumaReceita);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar as receitas:', error);
+                const mensagemErro = document.createElement('p');
+                mensagemErro.textContent = 'Erro ao carregar as receitas.';
+                areaRecipesElement.appendChild(mensagemErro);
+            });
+    } else {
+        console.log('Usuário não logado ou elemento de área de receitas não encontrado.');
     }
 
-    if(input_category.value == "") {
-        alert("Erro! Você deve selecionar uma Categoria para a Receita.");
-        return;
+    function exibirDetalhesReceita(receitaId, nomeReceita) { // Recebe o nome da receita
+        fetch(`http://localhost:3000/receita/${receitaId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(detalhes => {
+                console.log('Detalhes da receita:', detalhes);
+                exibirModalDetalhes(nomeReceita, detalhes); // Passa o nome da receita para exibirModalDetalhes
+            })
+            .catch(error => {
+                console.error('Erro ao buscar detalhes da receita:', error);
+            });
     }
 
-    let formatted_name = (name_recipe.value).charAt(0).toUpperCase() + (name_recipe.value).slice(1);
-    let formatted_cat = (input_category.value).charAt(0).toUpperCase() + (input_category.value).slice(1);
+    function exibirModalDetalhes(nomeReceita, detalhes) {
+        const modal = document.createElement('div');
+        modal.classList.add('recipe-modal');
 
-    hold_name.innerHTML = `<strong>${formatted_name}</strong> <span style="color: gray;">(${formatted_cat})</span>`;
-    name_recipe.value = "";
-    input_category.value = "";
-}
+        const modalContent = document.createElement('div');
+        modalContent.classList.add('modal-content');
 
-function get_ingr(form) {
-    if(input_ingred.value == "" || input_unit.value == "" || input_qntd.value == "") {
-        alert("Erro! Você deve preencher todos os campo referentes aos Ingredientes.")
-        return;
-    }
-    form.preventDefault();
-
-    let item_name = (input_ingred.value).charAt(0).toUpperCase() + (input_ingred.value).slice(1);
-    let unit = input_unit.value;
-    if(input_qntd.value >= 2) {
-        if(input_unit.value == "xícara de chá") {
-            unit = "xícaras de chá";
-        }
-        else if(input_unit.value == "colher de chá") {
-            unit = "colheres de chá";
-        }
-        else if(input_unit.value == "colher de sopa") {
-            unit = "colheres de sopa";
-        } else {
-            unit = input_unit.value + "s";
-        }
-    }
-    let new_ingr = `
-    <div id="new_item">
-        <li id="item">${item_name} - ${input_qntd.value} ${unit}</li>
-        <button id="edit_ingr"><i class="fa-solid fa-pen-to-square"></i></button>
-    </div>`;
-
-    div_shows.innerHTML += new_ingr;
-    _form.reset();
-}
-
-function get_recipe(form) {
-    form.preventDefault();
-    if(prepare.value == "") {
-        alert("Erro! Você deve preencher campo referente ao Modo de Preparo.")
-        return;
-    }
-    modo_preparo.innerHTML = prepare.value;
-    txtarea.value = "";
-}
-
-btn_name.addEventListener("click", recipe_name);
-btn_add.addEventListener("click", get_ingr);
-btn_save.addEventListener("click", get_recipe);
-selectCategory.addEventListener("change", function () {
-    if (selectCategory.value === "nova") {
-        let novaCategoria = prompt("Digite o nome da nova categoria:");
-
-        if (novaCategoria) {
-            novaCategoria = novaCategoria.charAt(0).toUpperCase() + novaCategoria.slice(1).toLowerCase();
-            let option = document.createElement("option");
-            option.value = novaCategoria.toLowerCase();
-            option.textContent = novaCategoria;
-            selectCategory.insertBefore(option, selectCategory.lastElementChild);
-            selectCategory.value = novaCategoria.toLowerCase();
-        } else {
-            selectCategory.value = "";
-        }
-    }
-});
-
-let btn_final_save = document.querySelector("#btn_final_save");
-
-btn_final_save.addEventListener("click", async function (e) {
-    e.preventDefault();
-
-    if (hold_name.innerHTML.trim() === "" || div_shows.innerHTML.trim() === "" || modo_preparo.innerHTML.trim() === "") {
-        alert("Erro! Você deve preencher o nome, os ingredientes e o modo de preparo antes de salvar a receita completa.");
-        return;
-    }
-
-    const nomeTexto = hold_name.textContent;
-    const nomeMatch = nomeTexto.match(/^(.+?)\s\(/);
-    const categoriaMatch = nomeTexto.match(/\(([^)]+)\)/);
-
-    const nome = nomeMatch ? nomeMatch[1] : '';
-    const categoria = categoriaMatch ? categoriaMatch[1] : '';
-
-    const ingredientes = [];
-    document.querySelectorAll("#list_ingred #item").forEach(li => {
-        ingredientes.push(li.textContent);  
-    });
-
-    const modoPreparo = modo_preparo.innerText;
-
-    try {
-        const response = await fetch('http://localhost:3000/add_receita', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                nome,
-                categoria,
-                ingredientes,
-                modoPreparo,
-                email: localStorage.getItem('email')
-            }),
+        const closeButton = document.createElement('span');
+        closeButton.classList.add('close-button');
+        closeButton.innerHTML = '&times;';
+        closeButton.addEventListener('click', () => {
+            document.body.removeChild(modal);
         });
 
-        const result = await response.json();
-        alert(result.mensagem);
-    } catch (error) {
-        console.error(error);
-        alert("Erro ao salvar receita.");
+        const receitaNomeTitulo = document.createElement('h2');
+        receitaNomeTitulo.textContent = nomeReceita;
+
+        const ingredientesTitulo = document.createElement('h4');
+        ingredientesTitulo.textContent = 'Ingredientes:';
+
+        const listaIngredientes = document.createElement('ul');
+        detalhes.ingredientes.forEach(ingrediente => {
+            const itemLista = document.createElement('li');
+            itemLista.textContent = `${ingrediente.Ingrediente} - ${ingrediente.Quantidade} ${ingrediente.UnidadeMedida}`;
+            listaIngredientes.appendChild(itemLista);
+        });
+
+        const modoPreparoTitulo = document.createElement('h4');
+        modoPreparoTitulo.textContent = 'Modo de Preparo:';
+
+        const modoPreparoParagrafo = document.createElement('p');
+        modoPreparoParagrafo.textContent = detalhes.instrucao;
+
+        modalContent.appendChild(closeButton);
+        modalContent.appendChild(receitaNomeTitulo);
+        modalContent.appendChild(ingredientesTitulo);
+        modalContent.appendChild(listaIngredientes);
+        modalContent.appendChild(modoPreparoTitulo);
+        modalContent.appendChild(modoPreparoParagrafo);
+
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+
+        // Fechar o modal ao clicar fora dele
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                document.body.removeChild(modal);
+            }
+        });
     }
 });
