@@ -49,3 +49,10 @@ O BackEnd será feito em JavaScript e os bancos de dados serão trabalhados usan
   * Criar interface para escolher a categoria desejada e exibir apenas as receitas filtradas na tela.
   * Implementar a opção de criar categoria ao criar ou editar uma receita.
 
+# Diagramas UML
+A seguir, mostramos os diagramas UML que geramos:
+
+<p align="center">
+  <img src="./uml_classe.jpeg" alt="Diagrama UML Classe" width="800">
+  <img src="./uml_sequencia.jpeg" alt="Diagrama UML Sequência" width="800">
+</p>
