@@ -54,5 +54,7 @@ A seguir, mostramos os diagramas UML que geramos:
 
 <p align="center">
   <img src="./uml_classe.jpeg" alt="Diagrama UML Classe" width="800">
-  <img src="./uml_sequencia.jpeg" alt="Diagrama UML Sequência" width="800">
+ <br>
+ <br>
+  <img src="./uml_sequencia.jpeg" alt="Diagrama UML Sequência" width="250">
 </p>
